@@ -3,6 +3,7 @@
 # Adds missing z and m dimensions
 class AddMissingDimensions < ActiveRecord::Migration[6.1]
   def change
+    change_column :uredijos, :geom, :multi_polygon, srid: 4326, has_z: true, has_m: true
     change_column :girininkijos, :geom, :multi_polygon, srid: 4326, has_z: true, has_m: true
     change_column :kvartalai, :geom, :multi_polygon, srid: 4326, has_z: true, has_m: true
     change_column :sklypai, :geom, :multi_polygon, srid: 4326, has_z: true, has_m: true
