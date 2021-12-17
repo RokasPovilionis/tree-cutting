@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_15_163547) do
+ActiveRecord::Schema.define(version: 2021_12_17_150057) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_163547) do
   create_table "misku_pogrupiai", force: :cascade do |t|
     t.integer "mu"
     t.integer "saviv", null: false
-    t.date "lrv_data", null: false
+    t.string "lrv_data", null: false
     t.integer "lrv_nr", null: false
     t.integer "grupe", null: false
     t.integer "pogrupis", null: false
@@ -102,7 +102,7 @@ ActiveRecord::Schema.define(version: 2021_12_15_163547) do
     t.integer "saviv"
     t.float "kv_saviv"
     t.float "pl"
-    t.date "lrv_data"
+    t.string "lrv_data"
     t.integer "lrv_nr"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.datetime "created_at", precision: 6, null: false

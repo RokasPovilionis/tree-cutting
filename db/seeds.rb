@@ -12,6 +12,7 @@ Uredija.delete_all
 Girininkija.delete_all
 Kvartalas.delete_all
 Sklypas.delete_all
+ValstybinisMiskas.delete_all
 
 connection = ActiveRecord::Base.connection()
 
@@ -106,4 +107,21 @@ if Sklypas.all.count.zero?
 
     puts 'Great Success!'
   end
+end
+
+if ValstybinisMiskas.all.count.zero?
+
+  # Import valstybinis miskas data from shpfile to valstybiniai_r_miskai table
+  puts 'seeding valst_r_miskai'
+
+  shp_file_location = Rails.root.join('db', 'shpfiles', 'Valst_r_miskai.shp')
+  from_valst_r_miskai_shp_sql =
+    `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{shp_file_location} valst_r_miskai_ref`
+  connection.execute 'drop table if exists valst_r_miskai_ref'
+  connection.execute from_valst_r_miskai_shp_sql
+  connection.execute <<-SQL
+    insert into valst_r_miskai(mu, gir, kv, geo_kv, saviv, kv_saviv, pl, lrv_data, lrv_nr, geom, created_at, updated_at)
+      select mu, gir, kv, geo_kv, saviv, kv_saviv, pl, lrv_data, lrv_nr, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from valst_r_miskai_ref
+  SQL
+  connection.execute 'drop table valst_r_miskai_ref'
 end
