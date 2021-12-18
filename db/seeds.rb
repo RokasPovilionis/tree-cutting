@@ -13,6 +13,7 @@ Girininkija.delete_all
 Kvartalas.delete_all
 Sklypas.delete_all
 ValstybinisMiskas.delete_all
+MiskuPogrupis.delete_all
 
 connection = ActiveRecord::Base.connection()
 
@@ -124,4 +125,21 @@ if ValstybinisMiskas.all.count.zero?
       select mu, gir, kv, geo_kv, saviv, kv_saviv, pl, lrv_data, lrv_nr, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from valst_r_miskai_ref
   SQL
   connection.execute 'drop table valst_r_miskai_ref'
+end
+
+if MiskuPogrupis.all.count.zero?
+
+  # Import valstybinis miskas data from shpfile to valstybiniai_r_miskai table
+  puts 'seeding misku_pogrupiai'
+
+  shp_file_location = Rails.root.join('db', 'shpfiles', 'Misku_pogrupiai.shp')
+  from_misku_pogrupiai_shp_sql =
+    `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{shp_file_location} misku_pogrupiai_ref`
+  connection.execute 'drop table if exists misku_pogrupiai_ref'
+  connection.execute from_misku_pogrupiai_shp_sql
+  connection.execute <<-SQL
+    insert into misku_pogrupiai(mu, saviv, lrv_data, lrv_nr, grupe, pogrupis, geom, created_at, updated_at)
+      select mu, saviv, lrv_data, lrv_nr, grupe, pogrupis, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from misku_pogrupiai_ref
+  SQL
+  connection.execute 'drop table misku_pogrupiai_ref'
 end
