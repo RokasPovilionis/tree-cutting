@@ -8,12 +8,13 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Uredija.delete_all
-Girininkija.delete_all
-Kvartalas.delete_all
-Sklypas.delete_all
-ValstybinisMiskas.delete_all
-MiskuPogrupis.delete_all
+# Uredija.delete_all
+# Girininkija.delete_all
+# Kvartalas.delete_all
+# Sklypas.delete_all
+# ValstybinisMiskas.delete_all
+# MiskuPogrupis.delete_all
+KmbGeoobjektas.delete_all
 
 connection = ActiveRecord::Base.connection()
 
@@ -129,7 +130,7 @@ end
 
 if MiskuPogrupis.all.count.zero?
 
-  # Import valstybinis miskas data from shpfile to valstybiniai_r_miskai table
+  # Import misku pogrupis data from shpfile to misku_pogrupiai table
   puts 'seeding misku_pogrupiai'
 
   shp_file_location = Rails.root.join('db', 'shpfiles', 'Misku_pogrupiai.shp')
@@ -142,4 +143,21 @@ if MiskuPogrupis.all.count.zero?
       select mu, saviv, lrv_data, lrv_nr, grupe, pogrupis, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from misku_pogrupiai_ref
   SQL
   connection.execute 'drop table misku_pogrupiai_ref'
+end
+
+if KmbGeoobjektas.all.count.zero?
+
+  # Import kmb geoobjektas data from shpfile to kmb_geoobjektas table
+  puts 'seeding kmb_geoobjektas'
+
+  shp_file_location = Rails.root.join('db', 'shpfiles', 'KMB_geoobjektas.shp')
+  from_kmb_geoobjektas_shp_sql =
+    `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{shp_file_location} kmb_geoobjektas_ref`
+  connection.execute 'drop table if exists kmb_geoobjektas_ref'
+  connection.execute from_kmb_geoobjektas_shp_sql
+  connection.execute <<-SQL
+    insert into kmb_geoobjektas(kmb_kod, ur, gir, kmb_tip_kod, pot_kmb_tip_kod, pastabos, geom, created_at, updated_at)
+      select kmb_kod, ur, gir, kmb_tip_ko, pot_kmb_ti, pastabos, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from kmb_geoobjektas_ref
+  SQL
+  connection.execute 'drop table kmb_geoobjektas_ref'
 end
