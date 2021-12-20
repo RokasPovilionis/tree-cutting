@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_150057) do
+ActiveRecord::Schema.define(version: 2021_12_20_011216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,26 @@ ActiveRecord::Schema.define(version: 2021_12_17_150057) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_girininkijos_on_geom", using: :gist
+  end
+
+  create_table "kirtimu_leidimai", force: :cascade do |t|
+    t.string "serija_ir_nr", null: false
+    t.string "regionas", null: false
+    t.string "rajonas", null: false
+    t.string "nuosavybes_forma", null: false
+    t.string "uredija", null: false
+    t.string "girkininkija", null: false
+    t.integer "kvartalas", null: false
+    t.string "sklypai", null: false
+    t.integer "plotas", null: false
+    t.integer "kad_vietove", null: false
+    t.integer "kad_blokas", null: false
+    t.integer "kad_nr", null: false
+    t.string "kirtimo_rusis", null: false
+    t.string "galiojimo_padzia", null: false
+    t.string "galiojimo_pabaiga", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "kmb_geoobjektas", force: :cascade do |t|
