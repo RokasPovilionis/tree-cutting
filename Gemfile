@@ -32,6 +32,7 @@ gem 'activerecord-postgis-adapter'
 
 gem 'pry'
 gem 'rgeo'
+gem 'rgeo-geojson'
 gem 'rgeo-shapefile'
 
 group :development, :test do
