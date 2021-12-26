@@ -29,6 +29,8 @@ require 'csv'
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
 
+# Leidimas.delete_all
+
 def row_to_hash(row)
   {
     serija_ir_nr: row[0],
@@ -66,8 +68,6 @@ def parse_bad_sklypai(numbers)
   end
   parsed_numbers.join(',')
 end
-
-Leidimas.delete_all
 
 if Leidimas.all.count.zero?
   file_nr = 0

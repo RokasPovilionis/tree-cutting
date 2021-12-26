@@ -16,7 +16,7 @@ if Uredija.all.count.zero?
   puts 'seeding uredijos'
 
   from_uredijos_shp_sql =
-    `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{Rails.root.join('db', 'shpfiles', 'Uredija.shp')} uredijos_ref`
+    `shp2pgsql -c -g geom -W windows-1257 -s 4326 #{Rails.root.join('db', 'shpfiles', 'Uredija.shp')} uredijos_ref`
   connection.execute 'drop table if exists uredijos_ref'
   connection.execute from_uredijos_shp_sql
   connection.execute <<-SQL
@@ -32,7 +32,7 @@ if Girininkija.all.count.zero?
   puts 'seeding girininkijos'
 
   from_girininkijos_shp_sql =
-    `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{Rails.root.join('db', 'shpfiles', 'Girininkija.shp')} girininkijos_ref`
+    `shp2pgsql -c -g geom -W windows-1257 -s 4326 #{Rails.root.join('db', 'shpfiles', 'Girininkija.shp')} girininkijos_ref`
   connection.execute 'drop table if exists girininkijos_ref'
   connection.execute from_girininkijos_shp_sql
   connection.execute <<-SQL
