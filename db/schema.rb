@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_20_011216) do
+ActiveRecord::Schema.define(version: 2021_12_26_224550) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_12_20_011216) do
     t.string "rajonas", null: false
     t.string "nuosavybes_forma", null: false
     t.string "uredija", null: false
-    t.string "girkininkija", null: false
+    t.string "girininkija", null: false
     t.integer "kvartalas", null: false
     t.string "sklypai", null: false
     t.integer "plotas", null: false

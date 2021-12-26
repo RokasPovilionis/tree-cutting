@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      #mapDiv {
+        width: 1200px;
+        height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>GIS test map</h1>
+    <div id="mapDiv"></div>
+
+
+    <script type="text/javascript">
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('mapDiv'), {
+          zoom: 4,
+          center: new google.maps.LatLng(54.0049, 23.9864), //centering on Druskininku Uredija
+          mapTypeId: 'terrain'
+        });
+        map.data.loadGeoJson("/uredija.json");
+      }
+    </script>
+
+    <script
+      async
+      defer
+      <%
+=begin%>
+ src = "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBKgjgdGIMcQh9jaXKxFGJFWVGfmAlFQ_Y">
+<%
+=end%>
+ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKgjgdGIMcQh9jaXKxFGJFWVGfmAlFQ_Y&callback=initMap">
+      <%
+=begin%>
+ src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBKgjgdGIMcQh9jaXKxFGJFWVGfmAlFQ_Y">
+<%
+=end%>
+    </script>
+  </body>
+</html>

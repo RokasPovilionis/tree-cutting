@@ -9,7 +9,7 @@ class AddLeidimaiTable < ActiveRecord::Migration[6.1]
       t.string :rajonas, null: false
       t.string :nuosavybes_forma, null: false
       t.string :uredija, null: false
-      t.string :girkininkija, null: false
+      t.string :girininkija, null: false
       t.integer :kvartalas, null: false
       t.string :sklypai, null: false
       t.integer :plotas, null: false
