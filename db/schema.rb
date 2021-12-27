@@ -93,13 +93,6 @@ ActiveRecord::Schema.define(version: 2021_12_27_005148) do
     t.index ["geom"], name: "index_misku_pogrupiai_on_geom", using: :gist
   end
 
-  create_table "posts", force: :cascade do |t|
-    t.string "title"
-    t.text "body"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "sklypai", force: :cascade do |t|
     t.string "mu_kod", null: false
     t.string "gir_kod", null: false
