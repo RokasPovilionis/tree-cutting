@@ -30,6 +30,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'activerecord-postgis-adapter'
 
+gem 'composite_primary_keys'
 gem 'pry'
 gem 'rgeo'
 gem 'rgeo-geojson'

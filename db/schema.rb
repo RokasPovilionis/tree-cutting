@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_26_224550) do
+ActiveRecord::Schema.define(version: 2021_12_27_005148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2021_12_26_224550) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_girininkijos_on_geom", using: :gist
+    t.index ["mu_kod", "gir_kod"], name: "index_girininkijos_on_mu_kod_and_gir_kod", unique: true
   end
 
   create_table "kirtimu_leidimai", force: :cascade do |t|
@@ -67,6 +68,16 @@ ActiveRecord::Schema.define(version: 2021_12_26_224550) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_kvartalai_on_geom", using: :gist
+    t.index ["mu_kod", "gir_kod", "kv_nr"], name: "index_kvartalai_on_mu_kod_and_gir_kod_and_kv_nr", unique: true
+  end
+
+  create_table "kvartalai_ref", primary_key: "gid", id: :serial, force: :cascade do |t|
+    t.decimal "shape_leng"
+    t.decimal "shape_area"
+    t.string "mu_kod", limit: 254
+    t.string "gir_kod", limit: 254
+    t.string "kv_nr", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
   end
 
   create_table "misku_pogrupiai", force: :cascade do |t|
@@ -103,6 +114,7 @@ ActiveRecord::Schema.define(version: 2021_12_26_224550) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_sklypai_on_geom", using: :gist
+    t.index ["mu_kod", "gir_kod", "kv_nr", "skl_nr"], name: "index_sklypai_on_mu_kod_and_gir_kod_and_kv_nr_and_skl_nr", unique: true
   end
 
   create_table "uredijos", force: :cascade do |t|
@@ -112,6 +124,7 @@ ActiveRecord::Schema.define(version: 2021_12_26_224550) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_uredijos_on_geom", using: :gist
+    t.index ["mu_kod"], name: "index_uredijos_on_mu_kod", unique: true
   end
 
   create_table "valst_r_miskai", force: :cascade do |t|

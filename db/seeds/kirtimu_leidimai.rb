@@ -38,7 +38,7 @@ def row_to_hash(row)
     rajonas: row[2],
     nuosavybes_forma: row[3],
     uredija: row[4],
-    girkininkija: row[5],
+    girininkija: row[5],
     kvartalas: row[6],
     sklypai: row[7],
     plotas: row[8],

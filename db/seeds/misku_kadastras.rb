@@ -54,6 +54,7 @@ if Kvartalas.all.count.zero?
   connection.execute <<-SQL
     insert into kvartalai(mu_kod, gir_kod, kv_nr, geom, created_at, updated_at)
       select mu_kod, gir_kod, kv_nr, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from kvartalai_ref
+    ON CONFLICT DO NOTHING;
   SQL
   connection.execute 'drop table kvartalai_ref'
 end
@@ -79,8 +80,8 @@ if Sklypas.all.count.zero?
     slice_nr = 0
     values.each_slice(5000) do |slice|
       Sklypas.insert_all(slice)
-      puts "Slice nr #{slice_nr} inserted"
       slice_nr += 1
+      puts "Slice nr #{slice_nr} inserted"
     end
 
     puts 'Great Success!'
@@ -105,8 +106,8 @@ if Sklypas.all.count.zero?
     slice_nr = 0
     values.each_slice(5000) do |slice|
       Sklypas.insert_all(slice)
-      puts "Slice nr #{slice_nr} inserted"
       slice_nr += 1
+      puts "Slice nr #{slice_nr} inserted"
     end
 
     puts 'Great Success!'
