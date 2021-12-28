@@ -17,8 +17,8 @@ class AddLeidimaiTable < ActiveRecord::Migration[6.1]
       t.integer :kad_blokas, null: false
       t.integer :kad_nr, null: false
       t.string :kirtimo_rusis, null: false
-      t.string :galiojimo_padzia, null: false
-      t.string :galiojimo_pabaiga, null: false
+      t.date :galiojimo_pradzia, null: false
+      t.date :galiojimo_pabaiga, null: false
       t.timestamps
     end
   end

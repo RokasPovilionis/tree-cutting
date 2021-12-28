@@ -37,8 +37,8 @@ def row_to_hash(row)
     regionas: row[1],
     rajonas: row[2],
     nuosavybes_forma: row[3],
-    uredija: row[4],
-    girininkija: row[5],
+    uredija: row[4].split(' ')[0...-1].join(' '),
+    girininkija: row[5].split(' ')[0...-1].join(' '),
     kvartalas: row[6],
     sklypai: row[7],
     plotas: row[8],
@@ -46,8 +46,8 @@ def row_to_hash(row)
     kad_blokas: row[10],
     kad_nr: row[11],
     kirtimo_rusis: row[12],
-    galiojimo_padzia: row[13],
-    galiojimo_pabaiga: row[14],
+    galiojimo_pradzia: row[13].to_date,
+    galiojimo_pabaiga: row[14].to_date,
     created_at: Time.now.utc.iso8601,
     updated_at: Time.now.utc.iso8601
   }

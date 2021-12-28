@@ -18,7 +18,7 @@ namespace :gis_test_task do
   end
 
   desc 'creates json for Uredija girininkijos'
-  task create_state_json: :environment do
+  task create_girininkijos_json: :environment do
     require 'rgeo'
 
     puts 'Getting data for all the girininkijos'
@@ -27,7 +27,7 @@ namespace :gis_test_task do
     factory = RGeo::GeoJSON::EntityFactory.instance
 
     girininkijos.each do |g|
-      puts "Creating feature for #{g.hasc_code}"
+      puts "Creating feature for #{g.pavadinimas}"
       feature = factory.feature g.geom
       puts 'Generating hash'
       hash = RGeo::GeoJSON.encode feature

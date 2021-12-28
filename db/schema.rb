@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_005148) do
+ActiveRecord::Schema.define(version: 2021_12_27_233211) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2021_12_27_005148) do
     t.integer "kad_blokas", null: false
     t.integer "kad_nr", null: false
     t.string "kirtimo_rusis", null: false
-    t.string "galiojimo_padzia", null: false
-    t.string "galiojimo_pabaiga", null: false
+    t.date "galiojimo_pradzia", null: false
+    t.date "galiojimo_pabaiga", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -69,15 +69,6 @@ ActiveRecord::Schema.define(version: 2021_12_27_005148) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_kvartalai_on_geom", using: :gist
     t.index ["mu_kod", "gir_kod", "kv_nr"], name: "index_kvartalai_on_mu_kod_and_gir_kod_and_kv_nr", unique: true
-  end
-
-  create_table "kvartalai_ref", primary_key: "gid", id: :serial, force: :cascade do |t|
-    t.decimal "shape_leng"
-    t.decimal "shape_area"
-    t.string "mu_kod", limit: 254
-    t.string "gir_kod", limit: 254
-    t.string "kv_nr", limit: 254
-    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
   end
 
   create_table "misku_pogrupiai", force: :cascade do |t|

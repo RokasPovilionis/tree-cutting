@@ -18,28 +18,29 @@
       var map;
       function initMap() {
         map = new google.maps.Map(document.getElementById('mapDiv'), {
-          zoom: 4,
-          center: new google.maps.LatLng(54.0049, 23.9864), //centering on Druskininku Uredija
+          zoom: 7,
+          center: new google.maps.LatLng(55.1694, 23.8813), //centering on Druskininku Uredija
           mapTypeId: 'terrain'
         });
-        map.data.loadGeoJson("/uredija.json");
+        map.data.loadGeoJson("/druskininku_girininkija_28,3.json");
+        map.data.loadGeoJson("/druskininku_girininkija_28,1.json");
+
+        map.data.setStyle(function(feature) {
+        var color = "green";
+        return {
+          fillColor: color,
+          strokeWeight: 1
+        }
+      });
       }
+      var color = "green";
+
     </script>
 
     <script
       async
       defer
-      <%
-=begin%>
- src = "https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBKgjgdGIMcQh9jaXKxFGJFWVGfmAlFQ_Y">
-<%
-=end%>
  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKgjgdGIMcQh9jaXKxFGJFWVGfmAlFQ_Y&callback=initMap">
-      <%
-=begin%>
- src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBKgjgdGIMcQh9jaXKxFGJFWVGfmAlFQ_Y">
-<%
-=end%>
     </script>
   </body>
 </html>
