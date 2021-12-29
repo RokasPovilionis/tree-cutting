@@ -13,6 +13,13 @@
     <h1>GIS test map</h1>
     <div id="mapDiv"></div>
 
+    <%= form_with do |form| %>
+      <%= form.date_field :born_on %>
+      <%= form.time_field :started_at %>
+      <%= form.datetime_local_field :graduation_day %>
+      <%= form.submit %>
+    <% end %>
+
 
     <script type="text/javascript">
       var map;
