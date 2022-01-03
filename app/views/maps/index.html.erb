@@ -4,14 +4,14 @@
   <head>
     <style type="text/css">
       #mapDiv {
-        width: 1200px;
+        width: 75%;
         height: 800px;
       }
     </style>
   </head>
   <body>
+  <div class="container-fluid">
     <h1>GIS test map</h1>
-    <div id="mapDiv"></div>
 
     <%= form_with do |form| %>
       <%= form.date_field :born_on %>
@@ -20,6 +20,8 @@
       <%= form.submit %>
     <% end %>
 
+    <div class="w-75" id="mapDiv"></div>
+  </div>
 
     <script type="text/javascript">
       var map;
@@ -29,8 +31,12 @@
           center: new google.maps.LatLng(55.1694, 23.8813), //centering on Druskininku Uredija
           mapTypeId: 'terrain'
         });
-        map.data.loadGeoJson("/druskininku_girininkija_28,3.json");
-        map.data.loadGeoJson("/druskininku_girininkija_28,1.json");
+
+        map.data.loadGeoJson("sklypai_with_leidimai.json");
+
+        // <%= Dir[File.join(Rails.root, 'public', 'girininkija*.json')].map{ |path| path.split('/').last }.each do |file| %>
+        //   map.data.loadGeoJson("<%= file %>");
+        // // <% end %> // dunno why this works???
 
         map.data.setStyle(function(feature) {
         var color = "green";

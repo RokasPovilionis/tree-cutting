@@ -29,6 +29,8 @@
 /db/shpfiles
 /db/leidimai
 
+/public/geo_jsons
+
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 

@@ -32,7 +32,7 @@ namespace :gis_test_task do
       puts 'Generating hash'
       hash = RGeo::GeoJSON.encode feature
       puts 'Writing JSON file'
-      File.open("public/druskininku_girininkija_#{g.id}.json", 'w') { |file| file.write hash.to_json }
+      File.open("public/girininkija_#{g.pavadinimas}_#{g.id}.json", 'w') { |file| file.write hash.to_json }
     end
   end
 end
