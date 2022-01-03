@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_27_233211) do
+ActiveRecord::Schema.define(version: 2022_01_03_051743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_233211) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_girininkijos_on_geom", using: :gist
     t.index ["mu_kod", "gir_kod"], name: "index_girininkijos_on_mu_kod_and_gir_kod", unique: true
+    t.index ["pavadinimas"], name: "index_girininkijos_on_pavadinimas"
   end
 
   create_table "kirtimu_leidimai", force: :cascade do |t|
@@ -109,6 +110,7 @@ ActiveRecord::Schema.define(version: 2021_12_27_233211) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_uredijos_on_geom", using: :gist
     t.index ["mu_kod"], name: "index_uredijos_on_mu_kod", unique: true
+    t.index ["pavadinimas"], name: "index_uredijos_on_pavadinimas"
   end
 
   create_table "valst_r_miskai", force: :cascade do |t|
