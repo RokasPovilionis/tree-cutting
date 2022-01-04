@@ -29,7 +29,7 @@ require 'csv'
 # rubocop:disable Metrics/AbcSize
 # rubocop:disable Metrics/MethodLength
 
-# Leidimas.delete_all
+Leidimas.delete_all
 
 def row_to_hash(row)
   {
@@ -77,6 +77,13 @@ if Leidimas.all.count.zero?
     CSV.foreach(leidimu_file, col_sep: ', ') do |row|
       row[7] = parse_bad_sklypai(row[7])
       leidimai << row_to_hash(row)
+    end
+    leidimai.map do |leidimas|
+      if leidimas[:uredija] == 'Dubravos eksperimentinė mokomoji miškų'
+        leidimas[:uredija] = 'Dubravos eksperimentinė - mokomoji miškų'
+      else
+        leidimas
+      end
     end
     Leidimas.insert_all(leidimai)
     file_nr += 1

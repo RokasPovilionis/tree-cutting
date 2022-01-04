@@ -17,7 +17,7 @@
 
     <div>
       <%= form_with url: '/maps', remote: true do |form| %>
-        <%= form.select(:uredija, options_for_select( uredijos, :selected => Leidimas.distinct.pluck(:uredija).sort.reject(&:empty?) ), {}, {:multiple => true, :required => true}) %>
+        <%= form.select :uredija, uredijos %>
         <%= form.select :kirtimo_rusis, kirtimo_tipai %>
         <%= form.select :nuosavybes_forma, nuosavybes_formos %>
         <%= form.submit %>

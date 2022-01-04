@@ -9,8 +9,6 @@ class MapsController < ApplicationController
   def create
     puts('triggered create')
 
-    # binding.pry
-
     create_geo_json
 
     redirect_to maps_path
@@ -26,12 +24,36 @@ class MapsController < ApplicationController
     final_sklypas = nil
     multi_factory = RGeo::Geos.factory(srid: 4326)
 
+    uredijos = Uredija.where(pavadinimas: leidimai.pluck(:uredija).uniq
+      .map { |uredija| uredija.remove(' miškų').strip })
+
+    pavadinimas_to_mu_kod = uredijos.each_with_object({}) do |uredija, hash|
+      hash[uredija.pavadinimas] = uredija.mu_kod
+    end
+
+    pavadinimas_to_gir_kod = uredijos.each_with_object({}) do |uredija, hash|
+      hash[uredija.pavadinimas] = uredija.girininkijos.each_with_object({}) do |girininkija, u_pavad|
+        u_pavad[girininkija.pavadinimas] = girininkija.gir_kod
+      end
+    end
+
     leidimai.each do |leidimas|
       puts "Creating feature for leidimas nr #{leidimas.serija_ir_nr} #{current_nr} / #{leidimai_count}"
-      sklypai = Uredija&.find_by(pavadinimas: leidimas.uredija.remove(' miškų').strip)&.girininkijos
-                       &.find_by(pavadinimas: leidimas.girininkija)&.kvartalai
-                       &.find_by(kv_nr: leidimas.kvartalas)&.sklypai
-                       &.where(skl_nr: leidimas.sklypai.split.map(&:to_i))
+
+      sklypai = Sklypas.where(
+        mu_kod: pavadinimas_to_mu_kod[leidimas.uredija.remove(' miškų').strip],
+        gir_kod: pavadinimas_to_gir_kod.dig(leidimas.uredija.remove(' miškų').strip, leidimas.girininkija),
+        kv_nr: leidimas.kvartalas,
+        skl_nr: leidimas.sklypai.split
+      )
+      if sklypai.length.zero?
+        sklypai = Sklypas.where(
+          mu_kod: pavadinimas_to_mu_kod[leidimas.uredija.remove(' miškų').strip],
+          gir_kod: pavadinimas_to_gir_kod.dig(leidimas.uredija.remove(' miškų').strip, leidimas.girininkija),
+          kv_nr: leidimas.kvartalas,
+          skl_nr: leidimas.sklypai.split.map(&:to_i)
+        )
+      end
 
       sklypai&.each do |sklypas|
         final_sklypas = if !final_sklypas
@@ -52,13 +74,11 @@ class MapsController < ApplicationController
 
     puts "Original geometry type is #{final_sklypas&.geometry_type}"
 
-    if final_sklypas.geometry_type.type_name == 'MultiPolygon'
-      puts ' ++++ it is MultiPolygon'
-      multi_final_sklypas = final_sklypas
-    else
-      puts ' ---- it is not MultiPolygon'
-      multi_final_sklypas = multi_factory.multi_polygon([final_sklypas])
-    end
+    multi_final_sklypas = if final_sklypas.geometry_type.type_name == 'MultiPolygon'
+                            final_sklypas
+                          else
+                            multi_factory.multi_polygon([final_sklypas])
+                          end
 
     factory = RGeo::GeoJSON::EntityFactory.instance
 

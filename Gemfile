@@ -31,7 +31,13 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'activerecord-postgis-adapter'
 
 gem 'bootstrap'
+gem 'bootstrap_form'
+gem 'bootstrap-sass'
+
 gem 'composite_primary_keys'
+
+gem 'devise'
+
 gem 'jquery-rails'
 gem 'pry'
 gem 'rgeo'
