@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Controller for maps
 class MapsController < ApplicationController
   def index
     @galiojimo_pradzia = params

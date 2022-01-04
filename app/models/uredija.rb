@@ -7,4 +7,5 @@ class Uredija < ApplicationRecord
 
   has_many :girininkijos, foreign_key: 'mu_kod', class_name: 'Girininkija'
   has_many :kvartalai, through: :girininkijos
+  has_many :sklypai, through: :kvartalai
 end
