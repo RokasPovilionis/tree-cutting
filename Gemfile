@@ -30,7 +30,6 @@ gem 'bootsnap', '>= 1.4.4', require: false
 
 gem 'activerecord-postgis-adapter'
 
-gem 'bootstrap'
 gem 'bootstrap_form'
 gem 'bootstrap-sass'
 
