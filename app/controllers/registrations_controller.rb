@@ -2,6 +2,8 @@
 
 # Controller for registration screen
 class RegistrationsController < Devise::RegistrationsController
+  skip_before_action :authorized
+
   private
 
   def sign_up_params

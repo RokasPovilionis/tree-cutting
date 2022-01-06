@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col col-sm-10">
+
+      <%= link_to 'New Page', new_leidimai_path, class: "btn btn-success my-3" if current_user&.roles == 'admin'%>
+
+
+      <table class="table table-bordered table-hover">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Sesion and number</th>
+            <th scope="col">Region</th>
+            <th scope="col">District</th>
+            <th scope="col">For of ownership</th>
+            <th scope="col">Forest stewardship</th>
+            <th scope="col">Forest district</th>
+            <th scope="col">Quarter</th>
+            <th scope="col">Plots</th>
+            <th scope="col">Cutting type</th>
+            <th scope="col">Validity start date</th>
+            <th scope="col">Validity end date</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @leidimai.each do |leidimas| %>
+            <tr>
+              <td><%= leidimas.serija_ir_nr %></td>
+              <td><%= leidimas.regionas %></td>
+              <td><%= leidimas.rajonas %></td>
+              <td><%= leidimas.nuosavybes_forma %></td>
+              <td><%= leidimas.uredija %></td>
+              <td><%= leidimas.girininkija %></td>
+              <td><%= leidimas.kvartalas %></td>
+              <td><%= leidimas.sklypai %></td>
+              <td><%= leidimas.kirtimo_rusis %></td>
+              <td><%= leidimas.galiojimo_pradzia %></td>
+              <td><%= leidimas.galiojimo_pabaiga %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @leidimai, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+    </div>
+  </div>
+</div>
