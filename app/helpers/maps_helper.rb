@@ -13,4 +13,12 @@ module MapsHelper
   def uredijos
     Leidimas.distinct.pluck(:uredija).sort.reject(&:empty?)
   end
+
+  def map_params
+    controller.map_params
+  end
+
+  def geo_json_location
+    controller.geo_json_location.split('/').last(2).join('/')
+  end
 end

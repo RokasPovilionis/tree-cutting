@@ -2,60 +2,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <style type="text/css">
-      #mapDiv {
-        width: 75%;
-        height: 800px;
-      }
-    </style>
   </head>
   <body>
   <div class="container-fluid">
-    <h2>Tree cutting map</h2>
+    <div class="row justify-content-center">
 
-    <div class="w-75" id="mapDiv"></div>
-
-    <div>
-      <%= form_with url: '/maps', remote: true do |form| %>
-        <%= form.select :uredija, uredijos %>
-        <%= form.select :kirtimo_rusis, kirtimo_tipai %>
-        <%= form.select :nuosavybes_forma, nuosavybes_formos %>
-        <%= form.submit %>
-      <% end %>
+      <div class="col-sm-4">
+        <h2 class="text-center">Please select wanted permits</h2>
+        <%= bootstrap_form_with url: '/maps', remote: true do |form| %>
+          <%= form.select :uredija, uredijos %>
+          <%= form.select :kirtimo_rusis, kirtimo_tipai %>
+          <%= form.select :nuosavybes_forma, nuosavybes_formos %>
+          <%= form.submit %>
+        <% end %>
+      </div>
     </div>
   </div>
-
-    <script type="text/javascript">
-      var map;
-      function initMap() {
-        map = new google.maps.Map(document.getElementById('mapDiv'), {
-          zoom: 8,
-          center: new google.maps.LatLng(55.1694, 23.8813),
-          mapTypeId: 'terrain'
-        });
-
-        map.data.loadGeoJson("sklypai_with_leidimai.json");
-
-        // <%= Dir[File.join(Rails.root, 'public', 'girininkija*.json')].map{ |path| path.split('/').last }.each do |file| %>
-        //   map.data.loadGeoJson("<%= file %>");
-        // // <% end %> // dunno why this works???
-
-        map.data.setStyle(function(feature) {
-        var color = "green";
-        return {
-          fillColor: color,
-          strokeWeight: 1
-        }
-      });
-      }
-      var color = "green";
-
-    </script>
-
-    <script
-      async
-      defer
- src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKgjgdGIMcQh9jaXKxFGJFWVGfmAlFQ_Y&callback=initMap">
-    </script>
   </body>
 </html>
