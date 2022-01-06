@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <div class="col col-sm-10">
 
-      <%= link_to 'New Page', new_leidimai_path, class: "btn btn-success my-3" if current_user&.roles == 'admin'%>
+      <%= link_to 'Create New Permit', new_leidimai_path, class: "btn btn-success my-3" if current_user&.roles == 'admin'%>
 
 
       <table class="table table-bordered table-hover">
@@ -11,7 +11,7 @@
             <th scope="col">Sesion and number</th>
             <th scope="col">Region</th>
             <th scope="col">District</th>
-            <th scope="col">For of ownership</th>
+            <th scope="col">Form of ownership</th>
             <th scope="col">Forest stewardship</th>
             <th scope="col">Forest district</th>
             <th scope="col">Quarter</th>
