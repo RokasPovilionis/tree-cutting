@@ -11,7 +11,8 @@ class MapsController < ApplicationController
   end
 
   def map_params
-    params.permit(:uredija, :kirtimo_rusis, :nuosavybes_forma)
+    params.permit(uredija: [], kirtimo_rusis: [], nuosavybes_forma: [])
+          .reject { |_, v| v.is_a?(Array) && v.include?('') }
   end
 
   def geo_json_location
@@ -69,7 +70,6 @@ class MapsController < ApplicationController
     puts 'Generating hash'
     hash = RGeo::GeoJSON.encode feature
     puts 'Writing JSON file'
-
 
     File.open(geo_json_location, 'w') { |file| file.write hash.to_json }
   end
