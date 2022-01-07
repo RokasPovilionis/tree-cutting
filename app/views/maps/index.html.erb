@@ -2,18 +2,28 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+      .date-select {
+          display: inline-block;
+          width: 30%;
+      }
+    </style>
   </head>
   <body>
   <div class="container-fluid">
     <div class="row justify-content-center">
 
       <div class="col-sm-4">
-        <h2 class="text-center">Please select wanted permits</h2>
+        <h2 class="text-center">Please select what cutting permits interest you</h2>
         <%= bootstrap_form_with url: '/maps', remote: true do |form| %>
-          <%= form.select :uredija, uredijos, {:include_blank => "All Uredijos", :include_hidden => false}, { :multiple => true} %>
-          <%= form.select :kirtimo_rusis, kirtimo_tipai, {:include_blank => "All Kiritimo Būdai", :include_hidden => false}, { :multiple => true} %>
-          <%= form.select :nuosavybes_forma, nuosavybes_formos, {:include_blank => "All Nuosavybės Formos", :include_hidden => false}, { :multiple => true} %>
-          <%= form.submit %>
+          <%= form.select :uredija, uredijos, {:include_blank => "All uredijos", :include_hidden => false}, { :multiple => true} %>
+          <%= form.select :kirtimo_rusis, kirtimo_tipai, {:include_blank => "All kiritimo būdai", :include_hidden => false}, { :multiple => true} %>
+          <%= form.select :nuosavybes_forma, nuosavybes_formos, {:include_blank => "All nuosavybės formos", :include_hidden => false}, { :multiple => true} %>
+          <%= form.date_select :galiojimo_pradzia_nuo, {:prompt => { :month => 'Select month', :year => 'Select year', :day => 'Select day' }, :include_hidden => false}, :class => 'form-control date-select' %>
+          <%= form.date_select :galiojimo_pradzia_iki, {:prompt => { :month => 'Select month', :year => 'Select year', :day => 'Select day' }, :include_hidden => false}, :class => 'form-control date-select' %>
+          <%= form.date_select :galiojimo_pabaiga_nuo, {:prompt => { :month => 'Select month', :year => 'Select year', :day => 'Select day' }, :include_hidden => false}, :class => 'form-control date-select' %>
+          <%= form.date_select :galiojimo_pabaiga_iki, {:prompt => { :month => 'Select month', :year => 'Select year', :day => 'Select day' }, :include_hidden => false}, :class => 'form-control date-select' %>
+          <%= form.submit class: 'btn btn-success'%>
         <% end %>
       </div>
     </div>

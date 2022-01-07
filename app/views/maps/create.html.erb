@@ -26,7 +26,7 @@
                           <%= key.humanize.to_s + ':' %>
                       </div>
                       <div class="col text-right" style='white-space:nowrap;'>
-                          <%= value.to_s %>
+                          <%= value.to_s.delete('[').delete(']').delete('"').delete('"') %>
                       </div>
                     </div>
                   </li>
