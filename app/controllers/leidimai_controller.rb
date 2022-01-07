@@ -5,7 +5,7 @@ class LeidimaiController < ApplicationController
   skip_before_action :authorized, only: [:index]
 
   def index
-    @leidimai = Leidimas.paginate(page: params[:page], per_page: 25)
+    @leidimai = Leidimas.order(:created_at).paginate(page: params[:page], per_page: 25)
   end
 
   def new

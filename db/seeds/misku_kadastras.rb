@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-# Uredija.delete_all
-# Girininkija.delete_all
-# Kvartalas.delete_all
-# Sklypas.delete_all
-# ValstybinisMiskas.delete_all
-# MiskuPogrupis.delete_all
-# KmbGeoobjektas.delete_all
+Uredija.delete_all
+Girininkija.delete_all
+Kvartalas.delete_all
+Sklypas.delete_all
+ValstybinisMiskas.delete_all
+MiskuPogrupis.delete_all
+KmbGeoobjektas.delete_all
 
 connection = ActiveRecord::Base.connection()
 
