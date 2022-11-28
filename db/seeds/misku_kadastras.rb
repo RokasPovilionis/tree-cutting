@@ -47,16 +47,31 @@ if Kvartalas.all.count.zero?
   # Import kvartalas data from shpfile to kvartalai table
   puts 'seeding kvartalai'
 
-  from_kvartalai_shp_sql =
-    `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{Rails.root.join('db', 'shpfiles', 'Kvartalas.shp')} kvartalai_ref`
-  connection.execute 'drop table if exists kvartalai_ref'
-  connection.execute from_kvartalai_shp_sql
-  connection.execute <<-SQL
-    insert into kvartalai(mu_kod, gir_kod, kv_nr, geom, created_at, updated_at)
-      select mu_kod, gir_kod, kv_nr, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from kvartalai_ref
-    ON CONFLICT DO NOTHING;
-  SQL
-  connection.execute 'drop table kvartalai_ref'
+  RGeo::Shapefile::Reader.open("#{Rails.root}/db/shpfiles/Kvartalas.shp") do |file|
+    puts "File contains #{file.num_records} records."
+    values = []
+
+    file.each do |record|
+      bonus_params = {
+        geom: record.geometry,
+        created_at: Time.now.utc.iso8601,
+        updated_at: Time.now.utc.iso8601
+      }
+
+      values << record.attributes.except('Shape_Leng', 'Shape_Area').transform_keys(&:downcase).merge!(bonus_params)
+
+      puts "collected #{record.index + 1} kvartalai" if ((record.index + 1) % 5_000).zero?
+    end
+
+    slice_nr = 0
+    values.each_slice(5000) do |slice|
+      Kvartalas.insert_all(slice)
+      slice_nr += 1
+      puts "Slice nr #{slice_nr} inserted"
+    end
+
+    puts 'Great Success!'
+  end
 end
 
 if Sklypas.all.count.zero?
