@@ -151,16 +151,43 @@ if MiskuPogrupis.all.count.zero?
   # Import misku pogrupis data from shpfile to misku_pogrupiai table
   puts 'seeding misku_pogrupiai'
 
-  shp_file_location = Rails.root.join('db', 'shpfiles', 'Misku_pogrupiai.shp')
-  from_misku_pogrupiai_shp_sql =
-    `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{shp_file_location} misku_pogrupiai_ref`
-  connection.execute 'drop table if exists misku_pogrupiai_ref'
-  connection.execute from_misku_pogrupiai_shp_sql
-  connection.execute <<-SQL
-    insert into misku_pogrupiai(mu, saviv, lrv_data, lrv_nr, grupe, pogrupis, geom, created_at, updated_at)
-      select mu, saviv, lrv_data, lrv_nr, grupe, pogrupis, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from misku_pogrupiai_ref
-  SQL
-  connection.execute 'drop table misku_pogrupiai_ref'
+  # shp_file_location = Rails.root.join('db', 'shpfiles', 'Misku_pogrupiai.shp')
+  # from_misku_pogrupiai_shp_sql =
+  #   `shp2pgsql -c -g geom -W LATIN1 -s 4326 #{shp_file_location} misku_pogrupiai_ref`
+  # connection.execute 'drop table if exists misku_pogrupiai_ref'
+  # connection.execute from_misku_pogrupiai_shp_sql
+  # connection.execute <<-SQL
+  #   insert into misku_pogrupiai(mu, saviv, lrv_data, lrv_nr, grupe, pogrupis, geom, created_at, updated_at)
+  #     select mu, saviv, lrv_data, lrv_nr, grupe, pogrupis, geom, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP from misku_pogrupiai_ref
+  # SQL
+  # connection.execute 'drop table misku_pogrupiai_ref'
+
+  RGeo::Shapefile::Reader.open("#{Rails.root}/db/shpfiles/Misku_pogrupiai.shp") do |file|
+    puts "File contains #{file.num_records} records."
+    values = []
+
+    file.each do |record|
+      bonus_params = {
+        geom: record.geometry,
+        created_at: Time.now.utc.iso8601,
+        updated_at: Time.now.utc.iso8601
+      }
+
+      values << record.attributes.except('Shape_Leng', 'Shape_Area', 'GIS')
+                      .transform_keys(&:downcase).merge!(bonus_params)
+
+      puts "collected #{record.index + 1}" if ((record.index + 1) % 100).zero?
+    end
+
+    slice_nr = 0
+    values.each_slice(5000) do |slice|
+      MiskuPogrupis.insert_all(slice)
+      slice_nr += 1
+      puts "Misku pogrupis nr #{slice_nr} inserted"
+    end
+
+    puts 'Great Success!'
+  end
 end
 
 if KmbGeoobjektas.all.count.zero?
