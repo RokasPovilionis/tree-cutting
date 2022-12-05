@@ -6,37 +6,47 @@ class ScrapePermits
 
   PERMIT_SITE_URL = 'https://kirtleidimai.amvmt.lt/Default.aspx'
 
+  REGIONS_WITH_PERMITS = [
+    'Alytaus TP',
+    'Kauno TP',
+    'Klaipėdos TP',
+    'Marijampolės TP',
+    'Miškų kontrolės skyrius',
+    'Panevėžio TP',
+    'Šiaulių TP',
+    'Utenos TP',
+    'Vilniaus TP'
+  ].freeze
+
   def run
     load_cookies
 
-    parsed_page = parsed_page_with_permits
-
-    page_count = parsed_page.search('span')[2].children.last.text.to_i
-
-    columns = parsed_page.search('tr').select { |tr| tr.attributes['bgcolor']&.value == '#DEDFDE' }
+    scrape_permits
   end
 
   private
 
-  def parsed_page_with_permits
-    new_page = agent.post(PERMIT_SITE_URL, post_request_body(page))
+  def scrape_permits
+    REGIONS_WITH_PERMITS.each do |region|
+      reset_permit_page_count
+      CollectRegionPermits.run(region, agent, view_state)
+    end
+  end
 
-    Nokogiri::HTML(new_page.body)
+  def reset_permit_page_count
+    agent.get(PERMIT_SITE_URL)
   end
 
   def load_cookies
-    agent.post(PERMIT_SITE_URL)
+    initial_page
   end
 
-  def post_request_body(page)
-    {
-      '__EVENTTARGET' => 'GridView2',
-      '__EVENTARGUMENT' => 'Page$1',
-      '__VIEWSTATE' => page.form.fields.find { |field| field.name == '__VIEWSTATE' }.value,
-      'metai' => 'RadioButton1',
-      'padaliniai' => 'RadioButton3',
-      'DropDownList1' => 'Alytaus TP'
-    }
+  def initial_page
+    @initial_page ||= agent.post(PERMIT_SITE_URL)
+  end
+
+  def view_state
+    @view_state ||= initial_page.form.fields.find { |field| field.name == '__VIEWSTATE' }.value
   end
 
   def agent
