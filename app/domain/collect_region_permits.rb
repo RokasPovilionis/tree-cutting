@@ -9,12 +9,13 @@ class CollectRegionPermits
   initialize_with :region, :agent, :view_state
 
   def run
-    # TODO: Add database and maybe .csv file insertion
     puts "page count #{page_count} for region - #{region}"
     (1..page_count).each do |page_number|
       puts "scraping page number #{page_number} for region - #{region}"
 
-      parsed_page(page_number).search('tr').select { |tr| tr.attributes['bgcolor']&.value == '#DEDFDE' }
+      elements = parsed_page(page_number).search('tr').select { |tr| tr.attributes['bgcolor']&.value == '#DEDFDE' }
+
+      PermitSerializer.for(elements)
     end
   end
 
