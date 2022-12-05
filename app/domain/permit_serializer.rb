@@ -35,7 +35,9 @@ class PermitSerializer
   private
 
   def create_permit(attributes)
-    Leidimas.find_or_create_by(attributes)
+    corrected_attributes = PermitParser.for(attributes)
+
+    Leidimas.find_or_create_by(corrected_attributes)
   end
 
   def permit_attributes(permit_data)
