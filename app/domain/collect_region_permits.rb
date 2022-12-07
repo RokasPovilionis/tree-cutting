@@ -22,6 +22,8 @@ class CollectRegionPermits
   private
 
   def parsed_page(page_number)
+    agent.get(PERMIT_SITE_URL)
+
     new_page = agent.post(PERMIT_SITE_URL, post_request_body(page_number))
 
     Nokogiri::HTML(new_page.body)

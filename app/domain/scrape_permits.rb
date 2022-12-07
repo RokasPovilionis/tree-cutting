@@ -28,13 +28,8 @@ class ScrapePermits
 
   def scrape_permits
     REGIONS_WITH_PERMITS.each do |region|
-      reset_permit_page_count
       CollectRegionPermits.run(region, agent, view_state)
     end
-  end
-
-  def reset_permit_page_count
-    agent.get(PERMIT_SITE_URL)
   end
 
   def load_cookies
