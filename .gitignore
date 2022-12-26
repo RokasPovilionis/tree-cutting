@@ -28,6 +28,8 @@
 # Ignore shpfiles
 /db/shpfiles
 /db/leidimai
+/db/eu_svarbos_buverines
+/db/valstybes_saugomu_teritoriju_kadastras
 
 /public/geo_jsons
 
