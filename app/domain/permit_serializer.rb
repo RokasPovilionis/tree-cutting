@@ -4,24 +4,6 @@
 class PermitSerializer
   include Interactor::Initializer
 
-  PERMIT_ATTRIBUTE_POSITIONS = {
-    serija_ir_nr: 1,
-    regionas: 2,
-    rajonas: 3,
-    nuosavybes_forma: 4,
-    uredija: 5,
-    girininkija: 6,
-    kvartalas: 7,
-    sklypai: 8,
-    plotas: 9,
-    kad_vietove: 10,
-    kad_blokas: 11,
-    kad_nr: 12,
-    kirtimo_rusis: 13,
-    galiojimo_pradzia: 14,
-    galiojimo_pabaiga: 15
-  }.freeze
-
   initialize_with :permit_elements
 
   def run
@@ -41,7 +23,7 @@ class PermitSerializer
   end
 
   def permit_attributes(permit_data)
-    PERMIT_ATTRIBUTE_POSITIONS.transform_values do |value|
+    Constants::PERMIT_ATTRIBUTE_POSITIONS.transform_values do |value|
       extract_text(permit_data, value)
     end
   end
