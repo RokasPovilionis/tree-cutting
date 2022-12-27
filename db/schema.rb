@@ -10,11 +10,74 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_07_033050) do
+ActiveRecord::Schema.define(version: 2022_12_26_232601) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "bast", force: :cascade do |t|
+    t.string "id_kodas", null: false
+    t.string "sitecode", null: false
+    t.string "gkodas", null: false
+    t.string "pavadinima", null: false
+    t.string "eng_pavadi", null: false
+    t.text "vieta", null: false
+    t.integer "lat", null: false
+    t.integer "lon", null: false
+    t.integer "plotas"
+    t.integer "ilgis"
+    t.integer "statusas_b", null: false
+    t.date "steig_data"
+    t.string "statuso_ta"
+    t.text "steig_tikslas", null: false
+    t.text "eng_steig_tikslas", null: false
+    t.text "bendr_regl", null: false
+    t.date "reg_data", null: false
+    t.date "isreg_data"
+    t.string "isreg_prie"
+    t.string "isreg_ta"
+    t.date "kor_data"
+    t.string "id_registratorius_reg", null: false
+    t.string "id_registratorius_kor", null: false
+    t.integer "id_vart"
+    t.text "pastabos"
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["geom"], name: "index_bast_on_geom", using: :gist
+  end
+
+  create_table "bast_ref", primary_key: "gid", id: :serial, force: :cascade do |t|
+    t.string "id", limit: 13
+    t.string "sitecode", limit: 9
+    t.string "gkodas", limit: 6
+    t.string "vieta", limit: 254
+    t.decimal "lat"
+    t.decimal "lon"
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 200
+    t.string "id_regis00", limit: 200
+    t.float "id_vart"
+    t.string "pastabos", limit: 254
+    t.string "pavadinima", limit: 254
+    t.string "eng_pavadi", limit: 254
+    t.decimal "plotas"
+    t.decimal "ilgis"
+    t.float "statusas_b"
+    t.string "statuso_ta", limit: 254
+    t.string "bendr_regl", limit: 254
+    t.string "isreg_ta", limit: 254
+    t.string "steig_data", limit: 20
+    t.string "steig_tiks", limit: 254
+    t.string "eng_steig_", limit: 254
+    t.decimal "shape_leng"
+    t.decimal "shape_area"
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+  end
 
   create_table "girininkijos", force: :cascade do |t|
     t.string "mu_kod", null: false
@@ -84,6 +147,37 @@ ActiveRecord::Schema.define(version: 2022_01_07_033050) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_misku_pogrupiai_on_geom", using: :gist
+  end
+
+  create_table "past", force: :cascade do |t|
+    t.string "id_kodas", null: false
+    t.string "sitecode", null: false
+    t.string "gkodas", null: false
+    t.string "pavadinima", null: false
+    t.string "eng_pavadi", null: false
+    t.text "vieta", null: false
+    t.integer "lat", null: false
+    t.integer "lon", null: false
+    t.integer "plotas"
+    t.integer "ilgis"
+    t.date "steig_data"
+    t.string "steig_ta"
+    t.text "steig_tikslas", null: false
+    t.text "eng_steig_tikslas", null: false
+    t.text "bendr_regl", null: false
+    t.date "reg_data", null: false
+    t.date "isreg_data"
+    t.string "isreg_prie"
+    t.string "isreg_ta"
+    t.date "kor_data"
+    t.string "id_registratorius_reg", null: false
+    t.string "id_registratorius_kor", null: false
+    t.integer "id_vart"
+    t.text "pastabos"
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["geom"], name: "index_past_on_geom", using: :gist
   end
 
   create_table "sklypai", force: :cascade do |t|
