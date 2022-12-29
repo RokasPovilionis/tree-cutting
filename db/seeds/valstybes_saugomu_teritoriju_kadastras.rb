@@ -3,7 +3,7 @@
 if Rezervatas.count.zero?
   puts 'seeding STK rezervatai'
 
-  ReadShapeFiles.run(Rezervatas, "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Rezervatai.shp")
+  ReadShapeFiles.run(Rezervatas, "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Rezervatai.shp", true)
 
   puts 'Great Success!'
 end
@@ -11,7 +11,7 @@ end
 if Draustinis.count.zero?
   puts 'seeding STK draustiniai'
 
-  ReadShapeFiles.run(Draustinis, "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Draustiniai.shp")
+  ReadShapeFiles.run(Draustinis, "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Draustiniai.shp", true)
 
   puts 'Great Success!'
 end
@@ -21,7 +21,8 @@ if GeologiniaiGpoPlotiniai.count.zero?
 
   ReadShapeFiles.run(
     GeologiniaiGpoPlotiniai,
-    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Plot.shp"
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Plot.shp",
+    true
   )
 
   puts 'Great Success!'
@@ -32,7 +33,20 @@ if GeologiniaiGpoTaskiniai.count.zero?
 
   ReadShapeFiles.run(
     GeologiniaiGpoTaskiniai,
-    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Task.shp"
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Task.shp",
+    true
+  )
+
+  puts 'Great Success!'
+end
+
+if HidrografiniaiGpoPlotiniai.count.zero?
+  puts 'seeding STK Geologiniai gamtos paveldo objektai plotiniai'
+
+  ReadShapeFiles.run(
+    HidrografiniaiGpoPlotiniai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Hidrografiniai_GPO_Plot.shp",
+    false
   )
 
   puts 'Great Success!'

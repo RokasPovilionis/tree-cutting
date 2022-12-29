@@ -44,7 +44,7 @@ class ReadShapeFiles
     'eng_ar_gam' => 'eng_ar_gamt_paminkl'
   }.freeze
 
-  initialize_with :model_class, :file_location
+  initialize_with :model_class, :file_location, :use_constant
 
   def run
     @extracted_values = []
@@ -78,7 +78,7 @@ class ReadShapeFiles
       .transform_keys(&:downcase)
       .merge!(record_bonus_params(record))
       .transform_keys do |key|
-        STK_SHP_COLUMN_NAME_TO_FULL_NAME.keys.include?(key) ? STK_SHP_COLUMN_NAME_TO_FULL_NAME[key] : key
+        STK_SHP_COLUMN_NAME_TO_FULL_NAME.keys.include?(key) && use_constant ? STK_SHP_COLUMN_NAME_TO_FULL_NAME[key] : key
       end
   end
 
