@@ -26,3 +26,14 @@ if GeologiniaiGpoPlotiniai.count.zero?
 
   puts 'Great Success!'
 end
+
+if GeologiniaiGpoTaskiniai.count.zero?
+  puts 'seeding STK Geologiniai gamtos paveldo objektai plotiniai'
+
+  ReadShapeFiles.run(
+    GeologiniaiGpoTaskiniai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Task.shp"
+  )
+
+  puts 'Great Success!'
+end
