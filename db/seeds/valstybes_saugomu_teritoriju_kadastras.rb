@@ -63,3 +63,15 @@ if GeomorfologiniaiGpoPlotiniai.count.zero?
 
   puts 'Great Success!'
 end
+
+if HidrogeologiniaiGpoPlotiniai.count.zero?
+  puts 'seeding STK Geomorfologiniai gamtos paveldo objektai plotiniai'
+
+  ReadShapeFiles.run(
+    HidrogeologiniaiGpoPlotiniai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Hidrogeologiniai_GPO_Plot.shp",
+    false
+  )
+
+  puts 'Great Success!'
+end
