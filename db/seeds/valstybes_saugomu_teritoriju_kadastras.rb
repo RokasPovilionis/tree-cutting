@@ -65,7 +65,7 @@ if GeomorfologiniaiGpoPlotiniai.count.zero?
 end
 
 if HidrogeologiniaiGpoPlotiniai.count.zero?
-  puts 'seeding STK Geomorfologiniai gamtos paveldo objektai plotiniai'
+  puts 'seeding STK Hidrogeologiniai gamtos paveldo objektai plotiniai'
 
   ReadShapeFiles.run(
     HidrogeologiniaiGpoPlotiniai,
