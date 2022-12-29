@@ -29,7 +29,7 @@ if GeologiniaiGpoPlotiniai.count.zero?
 end
 
 if GeologiniaiGpoTaskiniai.count.zero?
-  puts 'seeding STK Geologiniai gamtos paveldo objektai plotiniai'
+  puts 'seeding STK Geologiniai gamtos paveldo objektai taskiniai'
 
   ReadShapeFiles.run(
     GeologiniaiGpoTaskiniai,
@@ -41,11 +41,23 @@ if GeologiniaiGpoTaskiniai.count.zero?
 end
 
 if HidrografiniaiGpoPlotiniai.count.zero?
-  puts 'seeding STK Geologiniai gamtos paveldo objektai plotiniai'
+  puts 'seeding STK Hidrografiniai gamtos paveldo objektai plotiniai'
 
   ReadShapeFiles.run(
     HidrografiniaiGpoPlotiniai,
     "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Hidrografiniai_GPO_Plot.shp",
+    false
+  )
+
+  puts 'Great Success!'
+end
+
+if GeomorfologiniaiGpoPlotiniai.count.zero?
+  puts 'seeding STK Geomorfologiniai gamtos paveldo objektai plotiniai'
+
+  ReadShapeFiles.run(
+    GeomorfologiniaiGpoPlotiniai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geomorfologiniai_GPO_Plot.shp",
     false
   )
 
