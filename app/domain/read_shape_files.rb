@@ -26,7 +26,22 @@ class ReadShapeFiles
     'steig_da00' => 'steig_data_galiojantis',
     'steig_ta_g' => 'steig_ta_galiojantis',
     'eng_draust' => 'eng_draustinio_pobudis',
-    'eng_drau00' => 'eng_draustinio_rusis'
+    'eng_drau00' => 'eng_draustinio_rusis',
+    'kult_pavel' => 'kult_paveld_kodas',
+    'skelb_tiks' => 'skelb_tikslas',
+    'adm_hier_k' => 'adm_hier_kodas',
+    'adm_pavadi' => 'adm_pavadinimas',
+    'adm_hier00' => 'adm_hier_kodas_sen',
+    'adm_pava00' => 'adm_pavadinimas_sen',
+    'gyv_rej_ko' => 'gyv_rej_kodas',
+    'gyv_pavad_' => 'gyv_pavad_v',
+    'ar_gamt_pa' => 'ar_gamt_paminkl',
+    'gamt_pam_s' => 'gamt_pam_steig_ta',
+    'gamt_pam00' => 'gamt_pam_steig_data',
+    'eng_objekt' => 'eng_objektu_rusys',
+    'eng_skelbe' => 'eng_skelbejas',
+    'eng_skelb_' => 'eng_skelb_tikslas',
+    'eng_ar_gam' => 'eng_ar_gamt_paminkl'
   }.freeze
 
   initialize_with :model_class, :file_location

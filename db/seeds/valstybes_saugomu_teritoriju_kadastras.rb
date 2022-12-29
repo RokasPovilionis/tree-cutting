@@ -15,3 +15,14 @@ if Draustinis.count.zero?
 
   puts 'Great Success!'
 end
+
+if GeologiniaiGpoPlotiniai.count.zero?
+  puts 'seeding STK Geologiniai gamtos paveldo objektai plotiniai'
+
+  ReadShapeFiles.run(
+    GeologiniaiGpoPlotiniai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Plot.shp"
+  )
+
+  puts 'Great Success!'
+end
