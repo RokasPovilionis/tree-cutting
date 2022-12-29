@@ -1,4 +1,7 @@
-class AddStkGeologiniaiGpoPLotiniaiTable < ActiveRecord::Migration[6.1]
+# frozen_string_literal: true
+
+# Adds STK Geologiniai Gamtos paveldo objektai plotiniai table
+class AddStkGeologiniaiGpoPlotiniaiTable < ActiveRecord::Migration[6.1]
   def change
     create_table :geologiniai_gpo_plotiniai do |t|
       t.string :id_kodas, null: false
