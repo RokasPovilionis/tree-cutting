@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_30_182754) do
+ActiveRecord::Schema.define(version: 2022_12_30_183617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -266,6 +266,45 @@ ActiveRecord::Schema.define(version: 2022_12_30_182754) do
     t.string "eng_kiti", limit: 254
     t.string "eng_rusis", limit: 100
     t.geometry "geom", limit: {:srid=>4326, :type=>"st_point", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
+  create_table "BuferinesApsaugosZonos", force: :cascade do |t|
+    t.string "gkodas", limit: 6
+    t.string "st_gkodas", limit: 6
+    t.string "st_id", limit: 13
+    t.float "plotas"
+    t.string "teisinis_p", limit: 100
+    t.string "data", limit: 20
+    t.integer "pozymis"
+    t.string "pastabos", limit: 254
+    t.string "reg_data", limit: 20
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 50
+    t.string "id_regis00", limit: 50
+    t.integer "id_vart"
+    t.string "eng_st_gko", limit: 6
+    t.integer "eng_pozymi"
+    t.string "eng_pastab", limit: 254
+    t.float "lat"
+    t.float "lon"
+    t.string "steigejas", limit: 254
+    t.string "steig_data", limit: 20
+    t.string "steig_ta", limit: 254
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 254
+    t.string "isreg_ta", limit: 254
+    t.string "eng_steige", limit: 254
+    t.string "eng_vieta", limit: 254
+    t.string "steigejas_", limit: 254
+    t.string "steig_da00", limit: 20
+    t.string "steig_ta_g", limit: 254
+    t.string "id_kodas", limit: 52
+    t.string "steig_tiks", limit: 254
+    t.string "eng_steig_", limit: 254
+    t.string "vieta", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
   end

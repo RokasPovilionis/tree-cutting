@@ -171,3 +171,15 @@ if FunkcinioPrioritetoZonos.count.zero?
 
   puts 'Great Success!'
 end
+
+if BuferinesApsaugosZonos.count.zero?
+  puts 'seeding STK Buferines Apsaugos Zonos'
+
+  ReadShapeFiles.run(
+    BuferinesApsaugosZonos,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/BuferinesApsaugosZonos.shp",
+    false
+  )
+
+  puts 'Great Success!'
+end
