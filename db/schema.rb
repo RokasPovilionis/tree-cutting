@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_30_122933) do
+ActiveRecord::Schema.define(version: 2022_12_30_124557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -401,6 +401,83 @@ ActiveRecord::Schema.define(version: 2022_12_30_122933) do
     t.string "eng_kiti", limit: 254
     t.string "aprasymas", limit: 254
     t.string "eng_aprasy", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
+  create_table "Zoologiniai_GPO_Plot", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "pavadinima", limit: 200
+    t.string "gkodas", limit: 6
+    t.integer "reiksme"
+    t.integer "porus"
+    t.integer "kult_pavel"
+    t.string "st_id", limit: 13
+    t.float "lat"
+    t.float "lon"
+    t.integer "x"
+    t.integer "y"
+    t.float "plotas"
+    t.string "skelbejas", limit: 200
+    t.string "skelb_data", limit: 20
+    t.string "skelb_ta", limit: 200
+    t.string "skelb_tiks", limit: 254
+    t.string "rusis", limit: 100
+    t.string "radaviete", limit: 254
+    t.string "kiti", limit: 100
+    t.integer "pav_id"
+    t.integer "adm_hier_k"
+    t.string "adm_pavadi", limit: 50
+    t.integer "adm_hier00"
+    t.string "adm_pava00", limit: 50
+    t.integer "gyv_rej_ko"
+    t.string "gyv_pavad_", limit: 50
+    t.integer "gat_kodas"
+    t.string "gat_pavadi", limit: 50
+    t.integer "mu_kod"
+    t.string "mu_pavad", limit: 100
+    t.integer "gir_kod"
+    t.string "gir_pavad", limit: 100
+    t.integer "kv_nr"
+    t.integer "skl_nr"
+    t.string "skl_geo", limit: 12
+    t.integer "ar_gamt_pa"
+    t.string "gamt_pam_s", limit: 254
+    t.string "gamt_pam00", limit: 20
+    t.integer "bendr_regl"
+    t.string "spec_regla", limit: 254
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 200
+    t.string "isreg_ta", limit: 200
+    t.string "saltiniai", limit: 254
+    t.string "buf_zona_a", limit: 250
+    t.string "pastabos", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 50
+    t.string "id_regis00", limit: 50
+    t.integer "id_vart"
+    t.string "eng_pavadi", limit: 200
+    t.integer "eng_reiksm"
+    t.string "eng_porus", limit: 50
+    t.string "eng_skelbe", limit: 200
+    t.string "eng_skelb_", limit: 254
+    t.string "eng_vieta", limit: 254
+    t.integer "eng_ar_gam"
+    t.string "eng_saltin", limit: 254
+    t.string "eng_pastab", limit: 254
+    t.string "steigejas_", limit: 254
+    t.string "steig_data", limit: 20
+    t.string "steig_ta_g", limit: 254
+    t.string "planavimo_", limit: 254
+    t.string "vieta", limit: 254
+    t.integer "obj_status"
+    t.string "aprasymas", limit: 254
+    t.string "eng_aprasy", limit: 254
+    t.string "eng_rusis", limit: 100
+    t.float "shape_leng"
+    t.float "shape_area"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"

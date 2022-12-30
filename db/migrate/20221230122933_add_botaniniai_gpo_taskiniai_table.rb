@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Adds STK Botaniniai Gamtos paveldo objektai Taskiniai table
 class AddBotaniniaiGpoTaskiniaiTable < ActiveRecord::Migration[6.1]
   def self.up
     table = DBF::Table.new("#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Botaniniai_GPO_Task.dbf")
