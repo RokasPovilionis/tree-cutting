@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-# Adds STK Biosferos Poligonai table
-class AddBiosferosPoligonaiTable < ActiveRecord::Migration[6.1]
+# Adds STK Funkicinio prioriteto zonos table
+class AddFunkcinioPrioritetoZonosTable < ActiveRecord::Migration[6.1]
   def self.up
-    table = DBF::Table.new("#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/BiosferosPoligonai.dbf")
+    table = DBF::Table.new("#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/FunkcinioPrioritetoZonos.dbf")
     bonus_columns =
       "t.column \"geom\", :multi_polygon, srid: 4326, has_z: 1, has_m: 1\n   t.column \"created_at\", :date\n   t.column \"updated_at\", :date\n"
 
@@ -17,6 +17,6 @@ class AddBiosferosPoligonaiTable < ActiveRecord::Migration[6.1]
   end
 
   def self.down
-    drop_table :BiosferosPoligonai
+    drop_table :FunkcinioPrioritetoZonos
   end
 end

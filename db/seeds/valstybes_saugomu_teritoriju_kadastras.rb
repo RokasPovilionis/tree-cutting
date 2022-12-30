@@ -137,7 +137,7 @@ if StkParkai.count.zero?
 end
 
 if BiosferosRezervatai.count.zero?
-  puts 'seeding STK Parkai'
+  puts 'seeding STK Biosferos Rezervatai'
 
   ReadShapeFiles.run(
     BiosferosRezervatai,
@@ -149,11 +149,23 @@ if BiosferosRezervatai.count.zero?
 end
 
 if BiosferosPoligonai.count.zero?
-  puts 'seeding STK Parkai'
+  puts 'seeding STK Biosferos Poligonai'
 
   ReadShapeFiles.run(
     BiosferosPoligonai,
     "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/BiosferosPoligonai.shp",
+    false
+  )
+
+  puts 'Great Success!'
+end
+
+if FunkcinioPrioritetoZonos.count.zero?
+  puts 'seeding STK Funkcinio Prioriteto Zonos'
+
+  ReadShapeFiles.run(
+    FunkcinioPrioritetoZonos,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/FunkcinioPrioritetoZonos.shp",
     false
   )
 
