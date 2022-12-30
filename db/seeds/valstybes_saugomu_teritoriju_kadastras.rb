@@ -113,11 +113,23 @@ if ZoologiniaiGpoPlotiniai.count.zero?
 end
 
 if StkSklypai.count.zero?
-  puts 'seeding STK Zoologiniai gamtos paveldo objektai plotiniai'
+  puts 'seeding STK sklypai'
 
   ReadShapeFiles.run(
     StkSklypai,
     "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Sklypai.shp",
+    false
+  )
+
+  puts 'Great Success!'
+end
+
+if StkParkai.count.zero?
+  puts 'seeding STK Parkai'
+
+  ReadShapeFiles.run(
+    StkParkai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Parkai.shp",
     false
   )
 
