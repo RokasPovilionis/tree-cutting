@@ -10,11 +10,60 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_30_181018) do
+ActiveRecord::Schema.define(version: 2022_12_30_181742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
+
+  create_table "BiosferosRezervatai", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "pavadinima", limit: 200
+    t.string "gkodas", limit: 6
+    t.float "lat"
+    t.float "lon"
+    t.float "plotas"
+    t.string "steigejas", limit: 200
+    t.string "steig_data", limit: 20
+    t.string "steig_ta", limit: 200
+    t.string "steig_tiks", limit: 254
+    t.integer "bendr_regl"
+    t.string "spec_regla", limit: 254
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 200
+    t.string "isreg_ta", limit: 200
+    t.string "saltiniai", limit: 254
+    t.integer "tarpt_svar"
+    t.string "tarpt_sv00", limit: 254
+    t.string "duomen_mon", limit: 250
+    t.string "buf_zona_a", limit: 250
+    t.string "pastabos", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 50
+    t.string "id_regis00", limit: 50
+    t.integer "id_vart"
+    t.string "eng_pavadi", limit: 200
+    t.string "eng_steige", limit: 200
+    t.string "eng_steig_", limit: 254
+    t.string "eng_vieta", limit: 254
+    t.string "eng_saltin", limit: 254
+    t.integer "eng_tarpt_"
+    t.string "eng_tarp00", limit: 254
+    t.string "eng_pastab", limit: 254
+    t.integer "reiksme"
+    t.integer "eng_reiksm"
+    t.string "steigejas_", limit: 254
+    t.string "steig_da00", limit: 20
+    t.string "steig_ta_g", limit: 254
+    t.string "tvarkymo_z", limit: 254
+    t.string "funkc_prio", limit: 254
+    t.string "planavimo_", limit: 254
+    t.string "vieta", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
 
   create_table "Botaniniai_GPO_Plot", force: :cascade do |t|
     t.string "id_kodas", limit: 13

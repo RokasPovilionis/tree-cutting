@@ -135,3 +135,15 @@ if StkParkai.count.zero?
 
   puts 'Great Success!'
 end
+
+if BiosferosRezervatai.count.zero?
+  puts 'seeding STK Parkai'
+
+  ReadShapeFiles.run(
+    BiosferosRezervatai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/BiosferosRezervatai.shp",
+    false
+  )
+
+  puts 'Great Success!'
+end
