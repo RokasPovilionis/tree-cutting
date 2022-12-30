@@ -87,3 +87,15 @@ if BotaniniaiGpoPlotiniai.count.zero?
 
   puts 'Great Success!'
 end
+
+if BotaniniaiGpoTaskiniai.count.zero?
+  puts 'seeding STK Botaniniai gamtos paveldo objektai taskiniai'
+
+  ReadShapeFiles.run(
+    BotaniniaiGpoTaskiniai,
+    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Botaniniai_GPO_Task.shp",
+    false
+  )
+
+  puts 'Great Success!'
+end
