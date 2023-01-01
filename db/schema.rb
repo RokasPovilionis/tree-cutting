@@ -16,6 +16,37 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
   enable_extension "plpgsql"
   enable_extension "postgis"
 
+  create_table "Bast", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "sitecode", limit: 9
+    t.string "gkodas", limit: 6
+    t.string "vieta", limit: 254
+    t.float "lat"
+    t.float "lon"
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 200
+    t.string "id_regis00", limit: 200
+    t.integer "id_vart"
+    t.string "pastabos", limit: 254
+    t.string "pavadinima", limit: 254
+    t.string "eng_pavadi", limit: 254
+    t.float "plotas"
+    t.float "ilgis"
+    t.integer "statusas_b"
+    t.string "statuso_ta", limit: 254
+    t.string "bendr_regl", limit: 254
+    t.string "isreg_ta", limit: 254
+    t.string "steig_data", limit: 20
+    t.string "steig_tiks", limit: 254
+    t.string "eng_steig_", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
   create_table "BiosferosPoligonai", force: :cascade do |t|
     t.string "id_kodas", limit: 13
     t.string "pavadinima", limit: 200
@@ -797,6 +828,36 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.date "updated_at"
   end
 
+  create_table "Past", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "sitecode", limit: 9
+    t.string "gkodas", limit: 6
+    t.string "vieta", limit: 254
+    t.float "lat"
+    t.float "lon"
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 200
+    t.string "id_regis00", limit: 200
+    t.integer "id_vart"
+    t.string "pastabos", limit: 254
+    t.string "pavadinima", limit: 254
+    t.string "eng_pavadi", limit: 254
+    t.float "plotas"
+    t.float "ilgis"
+    t.string "steig_data", limit: 20
+    t.string "steig_ta", limit: 254
+    t.string "bendr_regl", limit: 254
+    t.string "isreg_ta", limit: 254
+    t.string "steig_tiks", limit: 254
+    t.string "eng_steig_", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
   create_table "Rezervatai", force: :cascade do |t|
     t.string "id_kodas", limit: 13
     t.string "pavadinima", limit: 200
@@ -1034,38 +1095,6 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.date "updated_at"
   end
 
-  create_table "bast", force: :cascade do |t|
-    t.string "id_kodas", null: false
-    t.string "sitecode", null: false
-    t.string "gkodas", null: false
-    t.string "pavadinima", null: false
-    t.string "eng_pavadi", null: false
-    t.text "vieta", null: false
-    t.integer "lat", null: false
-    t.integer "lon", null: false
-    t.integer "plotas"
-    t.integer "ilgis"
-    t.integer "statusas_b", null: false
-    t.date "steig_data"
-    t.string "statuso_ta"
-    t.text "steig_tikslas", null: false
-    t.text "eng_steig_tikslas", null: false
-    t.text "bendr_regl", null: false
-    t.date "reg_data", null: false
-    t.date "isreg_data"
-    t.string "isreg_prie"
-    t.string "isreg_ta"
-    t.date "kor_data"
-    t.string "id_registratorius_reg", null: false
-    t.string "id_registratorius_kor", null: false
-    t.integer "id_vart"
-    t.text "pastabos"
-    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["geom"], name: "index_bast_on_geom", using: :gist
-  end
-
   create_table "bast_ref", primary_key: "gid", id: :serial, force: :cascade do |t|
     t.string "id", limit: 13
     t.string "sitecode", limit: 9
@@ -1165,37 +1194,6 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_misku_pogrupiai_on_geom", using: :gist
-  end
-
-  create_table "past", force: :cascade do |t|
-    t.string "id_kodas", null: false
-    t.string "sitecode", null: false
-    t.string "gkodas", null: false
-    t.string "pavadinima", null: false
-    t.string "eng_pavadi", null: false
-    t.text "vieta", null: false
-    t.integer "lat", null: false
-    t.integer "lon", null: false
-    t.integer "plotas"
-    t.integer "ilgis"
-    t.date "steig_data"
-    t.string "steig_ta"
-    t.text "steig_tikslas", null: false
-    t.text "eng_steig_tikslas", null: false
-    t.text "bendr_regl", null: false
-    t.date "reg_data", null: false
-    t.date "isreg_data"
-    t.string "isreg_prie"
-    t.string "isreg_ta"
-    t.date "kor_data"
-    t.string "id_registratorius_reg", null: false
-    t.string "id_registratorius_kor", null: false
-    t.integer "id_vart"
-    t.text "pastabos"
-    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["geom"], name: "index_past_on_geom", using: :gist
   end
 
   create_table "sklypai", force: :cascade do |t|

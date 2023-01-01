@@ -2,5 +2,5 @@
 
 # Model for Buveinių apsaugai svarbioms teritorijoms
 class Bast < ApplicationRecord
-  self.table_name = 'bast'
+  self.table_name = 'Bast'
 end

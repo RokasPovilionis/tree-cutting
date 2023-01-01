@@ -5,6 +5,8 @@ class Seed::AddStkData
   include Interactor::Initializer
 
   STK_TABLES = [
+    { class: Bast, file_name: 'Bast' },
+    { class: Past, file_name: 'Past' },
     { class: Rezervatas, file_name: 'Rezervatai' },
     { class: Draustinis, file_name: 'Draustiniai' },
     { class: GeologiniaiGpoPlotiniai, file_name: 'Geologiniai_GPO_Plot' },
