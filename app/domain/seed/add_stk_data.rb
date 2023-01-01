@@ -36,7 +36,7 @@ class Seed::AddStkData
   private
 
   def insert_stk_data
-    insert_table_group_data(MANUALLY_INSERTED_STK_TABLES, true)
+    insert_table_group_data(MANUALLY_INSERTED_STK_TABLES, false)
 
     insert_table_group_data(DINAMICALLY_INSERTED_STK_TABLES, false)
   end

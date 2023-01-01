@@ -2,5 +2,5 @@
 
 # Model for STK Rezervatai
 class Rezervatas < ApplicationRecord
-  self.table_name = 'rezervatai'
+  self.table_name = 'Rezervatai'
 end

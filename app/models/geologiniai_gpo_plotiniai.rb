@@ -2,5 +2,5 @@
 
 # Model for Geologiniai gamtos paveldo objektai plotiniai
 class GeologiniaiGpoPlotiniai < ApplicationRecord
-  self.table_name = 'geologiniai_gpo_plotiniai'
+  self.table_name = 'Geologiniai_GPO_Plot'
 end

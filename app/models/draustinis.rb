@@ -2,5 +2,5 @@
 
 # Model for STK draustiniai
 class Draustinis < ApplicationRecord
-  self.table_name = 'draustiniai'
+  self.table_name = 'Draustiniai'
 end

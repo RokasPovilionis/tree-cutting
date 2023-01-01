@@ -309,6 +309,63 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.date "updated_at"
   end
 
+  create_table "Draustiniai", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "pavadinima", limit: 200
+    t.string "gkodas", limit: 6
+    t.integer "reiksme"
+    t.integer "draust_pob"
+    t.integer "draust_rus"
+    t.integer "draust_por"
+    t.float "lat"
+    t.float "lon"
+    t.float "plotas"
+    t.string "steigejas", limit: 200
+    t.string "steig_data", limit: 20
+    t.string "steig_ta", limit: 200
+    t.string "steig_tiks", limit: 254
+    t.integer "bendr_regl"
+    t.string "spec_regla", limit: 254
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 200
+    t.string "isreg_ta", limit: 200
+    t.string "saltiniai", limit: 254
+    t.integer "tarpt_svar"
+    t.string "tarpt_sv00", limit: 254
+    t.integer "gamtiniai_"
+    t.string "duomen_mon", limit: 250
+    t.string "buf_zona_a", limit: 250
+    t.string "pastabos", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 50
+    t.string "id_regis00", limit: 50
+    t.integer "id_vart"
+    t.string "eng_pavadi", limit: 200
+    t.string "eng_draust", limit: 50
+    t.integer "eng_drau00"
+    t.integer "eng_reiksm"
+    t.string "eng_steige", limit: 200
+    t.string "eng_steig_", limit: 254
+    t.string "eng_vieta", limit: 254
+    t.string "eng_saltin", limit: 254
+    t.integer "eng_tarpt_"
+    t.string "eng_tarp00", limit: 254
+    t.integer "eng_gamtin"
+    t.string "eng_pastab", limit: 254
+    t.string "steigejas_", limit: 254
+    t.string "steig_da00", limit: 20
+    t.string "steig_ta_g", limit: 254
+    t.string "st_id", limit: 52
+    t.string "tvarkymo_z", limit: 254
+    t.string "planavimo_", limit: 254
+    t.string "vieta", limit: 254
+    t.string "ta_nust_st", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
   create_table "FunkcinioPrioritetoZonos", force: :cascade do |t|
     t.string "gkodas", limit: 6
     t.string "pavadinima", limit: 100
@@ -353,6 +410,156 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.integer "reiksme"
     t.integer "eng_reiksm"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
+  create_table "Geologiniai_GPO_Plot", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "pavadinima", limit: 200
+    t.string "gkodas", limit: 6
+    t.integer "reiksme"
+    t.integer "objektu_ru"
+    t.integer "kult_pavel"
+    t.string "st_id", limit: 13
+    t.float "lat"
+    t.float "lon"
+    t.integer "x"
+    t.integer "y"
+    t.string "skelbejas", limit: 200
+    t.string "skelb_data", limit: 20
+    t.string "skelb_ta", limit: 200
+    t.string "skelb_tiks", limit: 254
+    t.float "aukstis"
+    t.float "ilgis"
+    t.float "plotis"
+    t.float "plotas"
+    t.float "perimet"
+    t.string "kiti", limit: 254
+    t.integer "pav_id"
+    t.integer "adm_hier_k"
+    t.string "adm_pavadi", limit: 50
+    t.integer "adm_hier00"
+    t.string "adm_pava00", limit: 50
+    t.integer "gyv_rej_ko"
+    t.string "gyv_pavad_", limit: 50
+    t.integer "gat_kodas"
+    t.string "gat_pavadi", limit: 50
+    t.integer "mu_kod"
+    t.string "mu_pavad", limit: 100
+    t.integer "gir_kod"
+    t.string "gir_pavad", limit: 100
+    t.integer "kv_nr"
+    t.integer "skl_nr"
+    t.string "skl_geo", limit: 12
+    t.integer "ar_gamt_pa"
+    t.string "gamt_pam_s", limit: 254
+    t.string "gamt_pam00", limit: 20
+    t.integer "bendr_regl"
+    t.string "spec_regla", limit: 254
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 200
+    t.string "isreg_ta", limit: 200
+    t.string "saltiniai", limit: 254
+    t.string "buf_zona_a", limit: 250
+    t.string "pastabos", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 50
+    t.string "id_regis00", limit: 50
+    t.integer "id_vart"
+    t.string "eng_pavadi", limit: 200
+    t.integer "eng_reiksm"
+    t.integer "eng_objekt"
+    t.string "eng_skelbe", limit: 200
+    t.string "eng_skelb_", limit: 254
+    t.string "eng_vieta", limit: 254
+    t.integer "eng_ar_gam"
+    t.string "eng_saltin", limit: 254
+    t.string "eng_pastab", limit: 254
+    t.string "steigejas_", limit: 254
+    t.string "steig_data", limit: 20
+    t.string "steig_ta_g", limit: 254
+    t.string "planavimo_", limit: 254
+    t.string "vieta", limit: 254
+    t.integer "obj_status"
+    t.string "eng_kiti", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
+  create_table "Geologiniai_GPO_Task", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "pavadinima", limit: 200
+    t.string "gkodas", limit: 6
+    t.integer "reiksme"
+    t.integer "objektu_ru"
+    t.integer "kult_pavel"
+    t.string "st_id", limit: 13
+    t.float "lat"
+    t.float "lon"
+    t.integer "x"
+    t.integer "y"
+    t.string "skelbejas", limit: 200
+    t.string "skelb_data", limit: 20
+    t.string "skelb_ta", limit: 200
+    t.string "skelb_tiks", limit: 254
+    t.float "aukstis"
+    t.float "ilgis"
+    t.float "plotis"
+    t.float "plotas"
+    t.float "perimet"
+    t.string "kiti", limit: 254
+    t.integer "pav_id"
+    t.integer "adm_hier_k"
+    t.string "adm_pavadi", limit: 50
+    t.integer "adm_hier00"
+    t.string "adm_pava00", limit: 50
+    t.integer "gyv_rej_ko"
+    t.string "gyv_pavad_", limit: 50
+    t.integer "gat_kodas"
+    t.string "gat_pavadi", limit: 50
+    t.integer "mu_kod"
+    t.string "mu_pavad", limit: 100
+    t.integer "gir_kod"
+    t.string "gir_pavad", limit: 100
+    t.integer "kv_nr"
+    t.integer "skl_nr"
+    t.string "skl_geo", limit: 12
+    t.integer "ar_gamt_pa"
+    t.string "gamt_pam_s", limit: 254
+    t.string "gamt_pam00", limit: 20
+    t.integer "bendr_regl"
+    t.string "spec_regla", limit: 254
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 200
+    t.string "isreg_ta", limit: 200
+    t.string "saltiniai", limit: 254
+    t.string "buf_zona_a", limit: 250
+    t.string "pastabos", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 50
+    t.string "id_regis00", limit: 50
+    t.string "eng_pavadi", limit: 200
+    t.integer "eng_reiksm"
+    t.integer "eng_objekt"
+    t.string "eng_skelbe", limit: 200
+    t.string "eng_skelb_", limit: 254
+    t.string "eng_vieta", limit: 254
+    t.integer "eng_ar_gam"
+    t.string "eng_saltin", limit: 254
+    t.string "eng_pastab", limit: 254
+    t.integer "id_vart"
+    t.string "steigejas_", limit: 254
+    t.string "steig_data", limit: 20
+    t.string "steig_ta_g", limit: 254
+    t.string "planavimo_", limit: 254
+    t.string "vieta", limit: 254
+    t.integer "obj_status"
+    t.string "eng_kiti", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"st_point", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
   end
@@ -585,6 +792,60 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.string "eng_kiti", limit: 254
     t.string "aprasymas", limit: 254
     t.string "eng_aprasy", limit: 254
+    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+    t.date "created_at"
+    t.date "updated_at"
+  end
+
+  create_table "Rezervatai", force: :cascade do |t|
+    t.string "id_kodas", limit: 13
+    t.string "pavadinima", limit: 200
+    t.string "gkodas", limit: 6
+    t.integer "rezervat_p"
+    t.integer "reiksme"
+    t.float "lat"
+    t.float "lon"
+    t.float "plotas"
+    t.string "steigejas", limit: 200
+    t.string "steig_data", limit: 20
+    t.string "steig_ta", limit: 200
+    t.string "steig_tiks", limit: 254
+    t.integer "bendr_regl"
+    t.string "spec_regla", limit: 254
+    t.string "reg_data", limit: 20
+    t.string "isreg_data", limit: 20
+    t.string "isreg_prie", limit: 200
+    t.string "isreg_ta", limit: 200
+    t.string "saltiniai", limit: 254
+    t.integer "tarpt_svar"
+    t.string "tarpt_sv00", limit: 254
+    t.integer "gamtiniai_"
+    t.string "duomen_mon", limit: 250
+    t.string "buf_zona_a", limit: 250
+    t.string "pastabos", limit: 254
+    t.string "kor_data", limit: 20
+    t.string "id_registr", limit: 50
+    t.string "id_regis00", limit: 50
+    t.integer "id_vart"
+    t.string "eng_pavadi", limit: 200
+    t.string "eng_rezerv", limit: 50
+    t.integer "eng_reiksm"
+    t.string "eng_steige", limit: 200
+    t.string "eng_steig_", limit: 254
+    t.string "eng_vieta", limit: 254
+    t.string "eng_saltin", limit: 254
+    t.integer "eng_tarpt_"
+    t.string "eng_tarp00", limit: 254
+    t.integer "eng_gamtin"
+    t.string "eng_pastab", limit: 254
+    t.string "steigejas_", limit: 254
+    t.string "steig_da00", limit: 20
+    t.string "steig_ta_g", limit: 254
+    t.string "st_id", limit: 52
+    t.string "tvarkymo_z", limit: 254
+    t.string "planavimo_", limit: 254
+    t.string "vieta", limit: 254
+    t.string "ta_nust_st", limit: 254
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
@@ -836,216 +1097,6 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
   end
 
-  create_table "draustiniai", force: :cascade do |t|
-    t.string "id_kodas", null: false
-    t.string "pavadinima", null: false
-    t.string "gkodas", null: false
-    t.integer "reiksme", null: false
-    t.integer "draust_pob", null: false
-    t.integer "draust_rus", null: false
-    t.integer "draust_por", null: false
-    t.integer "lat", null: false
-    t.integer "lon", null: false
-    t.integer "plotas"
-    t.string "steigejas"
-    t.date "steig_data"
-    t.string "steig_ta"
-    t.text "steig_tikslas", null: false
-    t.text "vieta", null: false
-    t.text "bendr_regl", null: false
-    t.text "spec_regla"
-    t.date "reg_data"
-    t.date "isreg_data"
-    t.string "isreg_prie"
-    t.string "isreg_ta"
-    t.text "saltiniai"
-    t.integer "tarptautinis_svarbos_statusas"
-    t.text "tarptautinis_svarbos_aprasymas"
-    t.integer "gamtiniai_kompleksai"
-    t.string "duomen_mon"
-    t.string "buferines_zonos_aprasymas"
-    t.text "tvarkymo_zonos_aprasymas"
-    t.text "planavimo_dokumentu_aprasymas"
-    t.text "pastabos"
-    t.integer "id_vart"
-    t.date "kor_data"
-    t.string "id_registratorius_reg", null: false
-    t.string "id_registratorius_kor", null: false
-    t.string "eng_pavadi", null: false
-    t.string "eng_draustinio_pobudis"
-    t.string "eng_draustinio_rusis"
-    t.integer "eng_reiksm"
-    t.string "eng_steigejas"
-    t.text "eng_steig_tikslas", null: false
-    t.text "eng_vieta"
-    t.text "eng_saltin"
-    t.integer "eng_tarptautines_svarbos_statusas"
-    t.text "eng_tarptautines_svarbos_aprasymas"
-    t.integer "eng_gamtiniai_kompleksai"
-    t.text "eng_pastabos"
-    t.string "steigejas_galiojantis"
-    t.date "steig_data_galiojantis"
-    t.text "steig_ta_galiojantis"
-    t.text "ta_nust_st"
-    t.string "st_id"
-    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["geom"], name: "index_draustiniai_on_geom", using: :gist
-  end
-
-  create_table "geologiniai_gpo_plotiniai", force: :cascade do |t|
-    t.string "id_kodas", null: false
-    t.string "pavadinima", null: false
-    t.string "gkodas", null: false
-    t.integer "reiksme", null: false
-    t.integer "objektu_ru", null: false
-    t.integer "kult_paveld_kodas"
-    t.string "st_id"
-    t.integer "lat", null: false
-    t.integer "lon", null: false
-    t.integer "x", null: false
-    t.integer "y", null: false
-    t.string "skelbejas"
-    t.date "skelb_data"
-    t.string "skelb_ta"
-    t.text "skelb_tikslas", null: false
-    t.integer "aukstis", null: false
-    t.integer "ilgis", null: false
-    t.integer "plotis", null: false
-    t.integer "plotas", null: false
-    t.integer "perimet", null: false
-    t.string "kiti"
-    t.integer "pav_id"
-    t.text "pastabos"
-    t.text "vieta", null: false
-    t.integer "adm_hier_kodas"
-    t.string "adm_pavadinimas"
-    t.integer "adm_hier_kodas_sen"
-    t.string "adm_pavadinimas_sen"
-    t.integer "gyv_rej_kodas"
-    t.string "gyv_pavad_v"
-    t.integer "gat_kodas"
-    t.string "gat_pavadi"
-    t.integer "mu_kod"
-    t.string "mu_pavad"
-    t.integer "gir_kod"
-    t.string "gir_pavad"
-    t.integer "kv_nr"
-    t.integer "skl_nr"
-    t.string "skl_geo"
-    t.integer "ar_gamt_paminkl"
-    t.text "gamt_pam_steig_ta"
-    t.date "gamt_pam_steig_data"
-    t.integer "bendr_regl", null: false
-    t.text "spec_regla"
-    t.date "reg_data"
-    t.date "isreg_data"
-    t.string "isreg_prie"
-    t.string "isreg_ta"
-    t.text "saltiniai"
-    t.string "buferines_zonos_aprasymas"
-    t.text "planavimo_dokumentu_aprasymas"
-    t.integer "id_vart"
-    t.date "kor_data"
-    t.string "id_registratorius_reg", null: false
-    t.string "id_registratorius_kor", null: false
-    t.string "eng_pavadi", null: false
-    t.integer "eng_reiksm"
-    t.integer "eng_objektu_rusys"
-    t.string "eng_skelbejas"
-    t.text "eng_skelb_tikslas"
-    t.text "eng_vieta"
-    t.integer "eng_ar_gamt_paminkl"
-    t.text "eng_saltin"
-    t.text "eng_pastabos"
-    t.string "steigejas_galiojantis"
-    t.date "steig_data"
-    t.text "steig_ta_galiojantis"
-    t.integer "obj_status"
-    t.string "eng_kiti"
-    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["geom"], name: "index_geologiniai_gpo_plotiniai_on_geom", using: :gist
-  end
-
-  create_table "geologiniai_gpo_taskiniai", force: :cascade do |t|
-    t.string "id_kodas", null: false
-    t.string "pavadinima", null: false
-    t.string "gkodas", null: false
-    t.integer "reiksme", null: false
-    t.integer "objektu_ru", null: false
-    t.integer "kult_paveld_kodas"
-    t.string "st_id"
-    t.integer "lat", null: false
-    t.integer "lon", null: false
-    t.integer "x", null: false
-    t.integer "y", null: false
-    t.string "skelbejas"
-    t.date "skelb_data"
-    t.string "skelb_ta"
-    t.text "skelb_tikslas", null: false
-    t.integer "aukstis", null: false
-    t.integer "ilgis", null: false
-    t.integer "plotis", null: false
-    t.integer "plotas", null: false
-    t.integer "perimet", null: false
-    t.string "kiti"
-    t.integer "pav_id"
-    t.text "pastabos"
-    t.text "vieta", null: false
-    t.integer "adm_hier_kodas"
-    t.string "adm_pavadinimas"
-    t.integer "adm_hier_kodas_sen"
-    t.string "adm_pavadinimas_sen"
-    t.integer "gyv_rej_kodas"
-    t.string "gyv_pavad_v"
-    t.integer "gat_kodas"
-    t.string "gat_pavadi"
-    t.integer "mu_kod"
-    t.string "mu_pavad"
-    t.integer "gir_kod"
-    t.string "gir_pavad"
-    t.integer "kv_nr"
-    t.integer "skl_nr"
-    t.string "skl_geo"
-    t.integer "ar_gamt_paminkl"
-    t.text "gamt_pam_steig_ta"
-    t.date "gamt_pam_steig_data"
-    t.integer "bendr_regl", null: false
-    t.text "spec_regla"
-    t.date "reg_data"
-    t.date "isreg_data"
-    t.string "isreg_prie"
-    t.string "isreg_ta"
-    t.text "saltiniai"
-    t.string "buferines_zonos_aprasymas"
-    t.text "planavimo_dokumentu_aprasymas"
-    t.integer "id_vart"
-    t.date "kor_data"
-    t.string "id_registratorius_reg", null: false
-    t.string "id_registratorius_kor", null: false
-    t.string "eng_pavadi", null: false
-    t.integer "eng_reiksm"
-    t.integer "eng_objektu_rusys"
-    t.string "eng_skelbejas"
-    t.text "eng_skelb_tikslas"
-    t.text "eng_vieta"
-    t.integer "eng_ar_gamt_paminkl"
-    t.text "eng_saltin"
-    t.text "eng_pastabos"
-    t.string "steigejas_galiojantis"
-    t.date "steig_data"
-    t.text "steig_ta_galiojantis"
-    t.integer "obj_status"
-    t.string "eng_kiti"
-    t.geometry "geom", limit: {:srid=>4326, :type=>"st_point", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["geom"], name: "index_geologiniai_gpo_taskiniai_on_geom", using: :gist
-  end
-
   create_table "girininkijos", force: :cascade do |t|
     t.string "mu_kod", null: false
     t.string "gir_kod", null: false
@@ -1145,61 +1196,6 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_past_on_geom", using: :gist
-  end
-
-  create_table "rezervatai", force: :cascade do |t|
-    t.string "id_kodas", null: false
-    t.string "pavadinima", null: false
-    t.string "gkodas", null: false
-    t.integer "rezervat_p", null: false
-    t.integer "reiksme", null: false
-    t.integer "lat", null: false
-    t.integer "lon", null: false
-    t.integer "plotas"
-    t.string "steigejas"
-    t.date "steig_data"
-    t.string "steig_ta"
-    t.text "steig_tikslas", null: false
-    t.text "vieta", null: false
-    t.text "bendr_regl", null: false
-    t.text "spec_regla"
-    t.date "reg_data"
-    t.date "isreg_data"
-    t.string "isreg_prie"
-    t.string "isreg_ta"
-    t.text "saltiniai"
-    t.integer "tarptautinis_svarbos_statusas"
-    t.text "tarptautinis_svarbos_aprasymas"
-    t.integer "gamtiniai_kompleksai"
-    t.string "duomen_mon"
-    t.string "buferines_zonos_aprasymas"
-    t.text "tvarkymo_zonos_aprasymas"
-    t.text "planavimo_dokumentu_aprasymas"
-    t.text "pastabos"
-    t.integer "id_vart"
-    t.date "kor_data"
-    t.string "id_registratorius_reg", null: false
-    t.string "id_registratorius_kor", null: false
-    t.string "eng_pavadi", null: false
-    t.string "eng_rezervato_pobudis"
-    t.integer "eng_reiksm"
-    t.string "eng_steigejas"
-    t.text "eng_steig_tikslas", null: false
-    t.text "eng_vieta"
-    t.text "eng_saltin"
-    t.integer "eng_tarptautines_svarbos_statusas"
-    t.text "eng_tarptautines_svarbos_aprasymas"
-    t.integer "eng_gamtiniai_kompleksai"
-    t.text "eng_pastabos"
-    t.string "steigejas_galiojantis"
-    t.date "steig_data_galiojantis"
-    t.text "steig_ta_galiojantis"
-    t.text "ta_nust_st"
-    t.string "st_id"
-    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["geom"], name: "index_rezervatai_on_geom", using: :gist
   end
 
   create_table "sklypai", force: :cascade do |t|

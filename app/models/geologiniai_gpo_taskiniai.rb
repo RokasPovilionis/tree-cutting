@@ -2,5 +2,5 @@
 
 # Model for Geologiniai gamtos paveldo objektai taskiniai
 class GeologiniaiGpoTaskiniai < ApplicationRecord
-  self.table_name = 'geologiniai_gpo_taskiniai'
+  self.table_name = 'Geologiniai_GPO_Task'
 end
