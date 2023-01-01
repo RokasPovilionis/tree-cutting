@@ -38,12 +38,15 @@ DINAMICALLY_INSERTED_STK_TABLES = [
     file_location: "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/BuferinesApsaugosZonos.shp" }
 ].freeze
 
+# MANUALLY_INSERTED_STK_TABLES.each { |table| table[:class].delete_all }
+# DINAMICALLY_INSERTED_STK_TABLES.each { |table| table[:class].delete_all }
+
 MANUALLY_INSERTED_STK_TABLES.each do |table_hash|
   next unless table_hash[:class].count.zero?
 
   puts "seeding seeding STK #{table_hash[:class]}"
 
-  ReadShapeFiles.run(table_hash[:class], table_hash[:file_location], true)
+  Seed::ReadShapeFiles.run(table_hash[:class], table_hash[:file_location], true)
 
   puts 'Great Success!'
 end
@@ -53,7 +56,7 @@ DINAMICALLY_INSERTED_STK_TABLES.each do |table_hash|
 
   puts "seeding seeding STK #{table_hash[:class]}"
 
-  ReadShapeFiles.run(table_hash[:class], table_hash[:file_location], false)
+  Seed::ReadShapeFiles.run(table_hash[:class], table_hash[:file_location], false)
 
   puts 'Great Success!'
 end

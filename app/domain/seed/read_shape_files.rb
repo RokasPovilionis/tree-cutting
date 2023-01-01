@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Class used to collect data from shp files and inserting them to the database
-class ReadShapeFiles
+class Seed::ReadShapeFiles
   include Interactor::Initializer
 
   STK_SHP_COLUMN_NAME_TO_FULL_NAME = {
