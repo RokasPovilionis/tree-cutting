@@ -1,41 +1,22 @@
 # frozen_string_literal: true
 
-if Rezervatas.count.zero?
-  puts 'seeding STK rezervatai'
+MANUALLY_INSERTED_STK_TABLES = [
+  { class: Rezervatas,
+    file_location: "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Rezervatai.shp" },
+  { class: Draustinis,
+    file_location: "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Draustiniai.shp" },
+  { class: GeologiniaiGpoPlotiniai,
+    file_location: "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Plot.shp" },
+  { class: GeologiniaiGpoTaskiniai,
+    file_location: "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Task.shp" }
+].freeze
 
-  ReadShapeFiles.run(Rezervatas, "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Rezervatai.shp", true)
+MANUALLY_INSERTED_STK_TABLES.each do |table_hash|
+  table_hash[:class].count.zero?
 
-  puts 'Great Success!'
-end
+  puts "seeding seeding STK #{table_hash[:class]}"
 
-if Draustinis.count.zero?
-  puts 'seeding STK draustiniai'
-
-  ReadShapeFiles.run(Draustinis, "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Draustiniai.shp", true)
-
-  puts 'Great Success!'
-end
-
-if GeologiniaiGpoPlotiniai.count.zero?
-  puts 'seeding STK Geologiniai gamtos paveldo objektai plotiniai'
-
-  ReadShapeFiles.run(
-    GeologiniaiGpoPlotiniai,
-    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Plot.shp",
-    true
-  )
-
-  puts 'Great Success!'
-end
-
-if GeologiniaiGpoTaskiniai.count.zero?
-  puts 'seeding STK Geologiniai gamtos paveldo objektai taskiniai'
-
-  ReadShapeFiles.run(
-    GeologiniaiGpoTaskiniai,
-    "#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Geologiniai_GPO_Task.shp",
-    true
-  )
+  ReadShapeFiles.run(table_hash[:class], table_hash[:file_location], true)
 
   puts 'Great Success!'
 end
