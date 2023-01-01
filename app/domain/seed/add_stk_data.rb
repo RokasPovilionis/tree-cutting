@@ -4,14 +4,11 @@
 class Seed::AddStkData
   include Interactor::Initializer
 
-  MANUALLY_INSERTED_STK_TABLES = [
+  STK_TABLES = [
     { class: Rezervatas, file_name: 'Rezervatai' },
     { class: Draustinis, file_name: 'Draustiniai' },
     { class: GeologiniaiGpoPlotiniai, file_name: 'Geologiniai_GPO_Plot' },
-    { class: GeologiniaiGpoTaskiniai, file_name: 'Geologiniai_GPO_Task' }
-  ].freeze
-
-  DINAMICALLY_INSERTED_STK_TABLES = [
+    { class: GeologiniaiGpoTaskiniai, file_name: 'Geologiniai_GPO_Task' },
     { class: HidrografiniaiGpoPlotiniai, file_name: 'Hidrografiniai_GPO_Plot' },
     { class: GeomorfologiniaiGpoPlotiniai, file_name: 'Geomorfologiniai_GPO_Plot' },
     { class: HidrogeologiniaiGpoPlotiniai, file_name: 'Hidrogeologiniai_GPO_Plot' },
@@ -27,8 +24,7 @@ class Seed::AddStkData
   ].freeze
 
   def run
-    # MANUALLY_INSERTED_STK_TABLES.each { |table| table[:class].delete_all }
-    # DINAMICALLY_INSERTED_STK_TABLES.each { |table| table[:class].delete_all }
+    # STK_TABLES.each { |table| table[:class].delete_all }
 
     insert_stk_data
   end
@@ -36,18 +32,12 @@ class Seed::AddStkData
   private
 
   def insert_stk_data
-    insert_table_group_data(MANUALLY_INSERTED_STK_TABLES, false)
-
-    insert_table_group_data(DINAMICALLY_INSERTED_STK_TABLES, false)
-  end
-
-  def insert_table_group_data(stk_tables, constant_usage)
-    stk_tables.each do |table_hash|
+    STK_TABLES.each do |table_hash|
       next unless table_hash[:class].count.zero?
 
       puts "seeding seeding STK #{table_hash[:class]}"
 
-      Seed::ReadShapeFiles.run(table_hash[:class], file_location(table_hash[:file_name]), constant_usage)
+      Seed::ReadShapeFiles.run(table_hash[:class], file_location(table_hash[:file_name]))
 
       puts 'Great Success!'
     end
