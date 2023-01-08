@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_12_30_183617) do
+ActiveRecord::Schema.define(version: 2023_01_08_024348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1194,6 +1194,15 @@ ActiveRecord::Schema.define(version: 2022_12_30_183617) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["geom"], name: "index_misku_pogrupiai_on_geom", using: :gist
+  end
+
+  create_table "permit_plot", force: :cascade do |t|
+    t.bigint "permit_id", null: false
+    t.bigint "plot_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["permit_id"], name: "index_permit_plot_on_permit_id"
+    t.index ["plot_id"], name: "index_permit_plot_on_plot_id"
   end
 
   create_table "sklypai", force: :cascade do |t|

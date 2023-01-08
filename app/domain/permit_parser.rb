@@ -9,6 +9,8 @@ class PermitParser
   def run
     parse_bad_plots
 
+    remove_gir_suffix_from_forestry
+
     permit_attributes
   end
 
@@ -27,5 +29,9 @@ class PermitParser
     return [plot_number[0..1], plot_number[2...]] if plot_number.to_i.digits.length > 3
 
     plot_number
+  end
+
+  def remove_gir_suffix_from_forestry
+    permit_attributes[:girininkija] = permit_attributes[:girininkija].remove(' gir')
   end
 end
