@@ -10,14 +10,14 @@
     </style>
   </head>
   <body>
-    <h2 class="mx-4">Tree cutting map</h2>
+    <h2 class="mx-4">Miškų kirtimų žemėlapis</h2>
     <%= link_to "Back", :back, class: 'btn btn-success mx-4 mb-4' %>
       <div class="container-fluid">
         <div class="row">
           <div class="col-sm-10 mx-4" id="mapDiv"></div>
           <div class="col-sm-2 mx-5">
             <div class="card">
-              <h5 class="card-header">Parameters</h5>
+              <h5 class="card-header">Parametrai</h5>
               <ul class="nav flex-column pb-3">
                 <% map_params.each do |key, value| %>
                   <li class="container px-3 pt-3">
