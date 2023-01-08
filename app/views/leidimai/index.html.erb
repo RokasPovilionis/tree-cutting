@@ -2,23 +2,23 @@
   <div class="row justify-content-center">
     <div class="col col-sm-10">
 
-      <%= link_to 'Create New Permit', new_leidimai_path, class: "btn btn-success my-3" if current_user&.roles == 'admin'%>
+      <%= link_to 'Sukurti naują leidimą', new_leidimai_path, class: "btn btn-success my-3" if current_user&.roles == 'admin'%>
 
 
       <table class="table table-bordered table-hover">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">Sesion and number</th>
-            <th scope="col">Region</th>
-            <th scope="col">District</th>
-            <th scope="col">Form of ownership</th>
-            <th scope="col">Forest stewardship</th>
-            <th scope="col">Forest district</th>
-            <th scope="col">Quarter</th>
-            <th scope="col">Plots</th>
-            <th scope="col">Cutting type</th>
-            <th scope="col">Validity start date</th>
-            <th scope="col">Validity end date</th>
+            <th scope="col">Sesija ir numeris</th>
+            <th scope="col">Regionas</th>
+            <th scope="col">Rajonas</th>
+            <th scope="col">Nuosavybės forma</th>
+            <th scope="col">Urėdija</th>
+            <th scope="col">Girininkija</th>
+            <th scope="col">Kvartalas</th>
+            <th scope="col">Sklypas</th>
+            <th scope="col">Kirtimo rūšis</th>
+            <th scope="col">Galiojimo pradžia</th>
+            <th scope="col">Galiojimo pabaiga</th>
 
           </tr>
         </thead>
