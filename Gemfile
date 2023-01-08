@@ -48,6 +48,8 @@ gem 'will_paginate-bootstrap-style'
 
 gem 'interactor-initializer'
 
+gem 'dotenv-rails'
+
 gem 'kimurai'
 gem 'mechanize'
 
