@@ -77,28 +77,24 @@ class MapsController < ApplicationController
     leidimai = leidimai.where('? < galiojimo_pabaiga', galiojimo_pabaiga_nuo) if galiojimo_pabaiga_nuo
     leidimai = leidimai.where('galiojimo_pabaiga < ?', galiojimo_pabaiga_iki) if galiojimo_pabaiga_iki
 
-    leidimai_count = leidimai.count
-    current_nr = 0
     final_sklypas = nil
     multi_factory = RGeo::Geos.factory(srid: 4326)
 
-    uredijos = Uredija.where(pavadinimas: leidimai.pluck(:uredija).uniq
-      .map { |uredija| uredija.remove(' miškų').strip })
+    plot_ids = PermitPlot.where(permit_id: leidimai.ids).pluck(:plot_id)
+    sklypai = Sklypas.where(id: plot_ids)
 
-    leidimai.each do |leidimas|
-      puts "Creating feature for leidimas nr #{leidimas.serija_ir_nr} #{current_nr} / #{leidimai_count}"
+    current_nr = 0
+    sklypai_count = sklypai.count
 
-      sklypai = leidimo_sklypai(leidimas, uredijos, leidimas.sklypai.split)
+    # final_sklypas = sklypai.pluck(:geom).sum
 
-      sklypai = leidimo_sklypai(leidimas, uredijos, leidimas.sklypai.split.map(&:to_i)) if sklypai.length.zero?
-
-      sklypai&.each do |sklypas|
-        final_sklypas = if !final_sklypas
-                          sklypas&.geom
-                        elsif sklypas
-                          final_sklypas.union(sklypas.geom)
-                        end
-      end
+    sklypai&.each do |sklypas|
+      final_sklypas = if !final_sklypas
+                        sklypas&.geom
+                      elsif sklypas
+                        final_sklypas.union(sklypas.geom)
+                      end
+      puts "Sklypai #{current_nr} / #{sklypai_count}"
 
       current_nr += 1
     end
@@ -125,29 +121,6 @@ class MapsController < ApplicationController
     puts 'Writing JSON file'
 
     File.open(geo_json_location, 'w') { |file| file.write hash.to_json }
-  end
-
-  def leidimo_sklypai(leidimas, uredijos, sklypo_numeriai)
-    Sklypas.where(
-      mu_kod: pavadinimas_to_mu_kod(uredijos)[leidimas.uredija.remove(' miškų').strip],
-      gir_kod: pavadinimas_to_gir_kod(uredijos).dig(leidimas.uredija.remove(' miškų').strip, leidimas.girininkija),
-      kv_nr: leidimas.kvartalas,
-      skl_nr: sklypo_numeriai
-    )
-  end
-
-  def pavadinimas_to_mu_kod(uredijos)
-    @pavadinimas_to_mu_kod ||= uredijos.each_with_object({}) do |uredija, hash|
-      hash[uredija.pavadinimas] = uredija.mu_kod
-    end
-  end
-
-  def pavadinimas_to_gir_kod(uredijos)
-    @pavadinimas_to_gir_kod ||= uredijos.each_with_object({}) do |uredija, hash|
-      hash[uredija.pavadinimas] = uredija.girininkijos.each_with_object({}) do |girininkija, u_pavad|
-        u_pavad[girininkija.pavadinimas] = girininkija.gir_kod
-      end
-    end
   end
 
   def galiojimo_params
