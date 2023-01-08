@@ -1,25 +1,25 @@
 <div class="container" id="sign-up-form">
   <div class="row justify-content-center">
     <div class="col-sm-offset-4 col-sm-8 mb-4">
-      <h3>Register new cutting permit</h3>
+      <h3>Sukurti naują kirtimų leidimą</h3>
       <%= bootstrap_form_for(@leidimas,
                             :url => leidimai_index_path) do |f| %>
-        <%= f.text_field :serija_ir_nr, label: 'Sesion and number', placeholder: 'sesion and number', class: 'form-control' %>
-        <%= f.text_field :regionas, label: 'Region', placeholder: 'region', class: 'form-control' %>
-        <%= f.text_field :rajonas, label: 'District', placeholder: 'district', class: 'form-control' %>
-        <%= f.text_field :nuosavybes_forma, label: 'Form of ownership', placeholder: 'form of ownership', class: 'form-control' %>
-        <%= f.text_field :uredija, label: 'Forest stewardship', placeholder: 'forest stewardship', class: 'form-control' %>
-        <%= f.text_field :girininkija, label: 'Forest district', placeholder: 'forest district', class: 'form-control' %>
-        <%= f.number_field :kvartalas, label: 'Quarter', placeholder: 'quarter', class: 'form-control' %>
-        <%= f.text_field :sklypai, label: 'Plots', placeholder: 'plots', class: 'form-control' %>
-        <%= f.number_field :plotas, label: 'Area', placeholder: 'area', class: 'form-control' %>
-        <%= f.number_field :kad_vietove, label: 'Cadastral area', placeholder: 'cadastral area', class: 'form-control' %>
-        <%= f.number_field :kad_blokas, label: 'Cadastral block', placeholder: 'cadastral block', class: 'form-control' %>
-        <%= f.number_field :kad_nr, label: 'Cadastral number', placeholder: 'cadastral number', class: 'form-control' %>
-        <%= f.text_field :kirtimo_rusis, label: 'Cutting type', placeholder: 'cutting type', class: 'form-control' %>
-        <%= f.date_field :galiojimo_pradzia, label: 'Validity start date', placeholder: 'validity start date', class: 'form-control' %>
-        <%= f.date_field :galiojimo_pabaiga, label: 'Validity end date', placeholder: 'validity end date', class: 'form-control' %>
-        <%= f.submit 'Create', class: 'btn btn-success sign-up-button' %>
+        <%= f.text_field :serija_ir_nr, label: 'Sesija ir numeris', placeholder: 'Sesija ir numeris', class: 'form-control' %>
+        <%= f.text_field :regionas, label: 'Regionas', placeholder: 'Regionas', class: 'form-control' %>
+        <%= f.text_field :rajonas, label: 'Rajonas', placeholder: 'Rajonas', class: 'form-control' %>
+        <%= f.text_field :nuosavybes_forma, label: 'Nuosavybės forma', placeholder: 'Nuosavybės forma', class: 'form-control' %>
+        <%= f.text_field :uredija, label: 'Urėdija', placeholder: 'Urėdija', class: 'form-control' %>
+        <%= f.text_field :girininkija, label: 'Girininkija', placeholder: 'Girininkija', class: 'form-control' %>
+        <%= f.number_field :kvartalas, label: 'Kvartalas', placeholder: 'Kvartalas', class: 'form-control' %>
+        <%= f.text_field :sklypai, label: 'Sklypai', placeholder: 'Sklypai', class: 'form-control' %>
+        <%= f.number_field :plotas, label: 'Plotas', placeholder: 'Plotas', class: 'form-control' %>
+        <%= f.number_field :kad_vietove, label: 'Kadastro vietovė', placeholder: 'Kadastro vietovė', class: 'form-control' %>
+        <%= f.number_field :kad_blokas, label: 'Kadastro blokas', placeholder: 'Kadastro blokas', class: 'form-control' %>
+        <%= f.number_field :kad_nr, label: 'Kadastro numeris', placeholder: 'Kadastro numeris', class: 'form-control' %>
+        <%= f.text_field :kirtimo_rusis, label: 'Kirtimo rūšis', placeholder: 'Kirtimo rūšis', class: 'form-control' %>
+        <%= f.date_field :galiojimo_pradzia, label: 'Galiojimo Pradžia', placeholder: 'Galiojimo Pradžia', class: 'form-control' %>
+        <%= f.date_field :galiojimo_pabaiga, label: 'Galiojimo Pabaiga', placeholder: 'Galiojimo Pabaiga', class: 'form-control' %>
+        <%= f.submit 'Sukurti', class: 'btn btn-success sign-up-button' %>
       <% end %>
     </div>
   </div>
