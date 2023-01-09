@@ -5,7 +5,7 @@ class MapsController < ApplicationController
   def index; end
 
   def create
-    create_geo_json unless File.exist?(geo_json_location)
+    GeoJson::Generate.for(leidimai, geo_json_location) unless File.exist?(geo_json_location)
   end
 
   def map_params
@@ -68,10 +68,6 @@ class MapsController < ApplicationController
   end
 
   private
-
-  def create_geo_json
-    GeoJson::Generate.for(leidimai, geo_json_location)
-  end
 
   def leidimai
     leidimai = Leidimas.where(map_params)
