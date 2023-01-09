@@ -70,14 +70,15 @@ class MapsController < ApplicationController
   private
 
   def create_geo_json
-    puts 'Getting data for all the leidimai'
+    GeoJson::Generate.for(leidimai, geo_json_location)
+  end
+
+  def leidimai
     leidimai = Leidimas.where(map_params)
     leidimai = leidimai.where('? < galiojimo_pradzia', galiojimo_pradzia_nuo) if galiojimo_pradzia_nuo
     leidimai = leidimai.where('galiojimo_pradzia < ?', galiojimo_pradzia_iki) if galiojimo_pradzia_iki
     leidimai = leidimai.where('? < galiojimo_pabaiga', galiojimo_pabaiga_nuo) if galiojimo_pabaiga_nuo
-    leidimai = leidimai.where('galiojimo_pabaiga < ?', galiojimo_pabaiga_iki) if galiojimo_pabaiga_iki
-
-    GeoJson::Generate.for(leidimai, geo_json_location)
+    leidimai.where('galiojimo_pabaiga < ?', galiojimo_pabaiga_iki) if galiojimo_pabaiga_iki
   end
 
   def galiojimo_params
