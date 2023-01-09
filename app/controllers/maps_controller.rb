@@ -99,11 +99,7 @@ class MapsController < ApplicationController
       current_nr += 1
     end
 
-    if final_sklypas.nil?
-      File.open('public/sklypai_with_leidimai.json', 'w') { |file| file.write {} }
-
-      return nil
-    end
+    return nil if final_sklypas.nil?
 
     puts "Original geometry type is #{final_sklypas&.geometry_type}"
 
@@ -120,7 +116,7 @@ class MapsController < ApplicationController
     hash = RGeo::GeoJSON.encode feature
     puts 'Writing JSON file'
 
-    File.open(geo_json_location, 'w') { |file| file.write hash.to_json }
+    File.write(geo_json_location, hash.to_json)
   end
 
   def galiojimo_params
