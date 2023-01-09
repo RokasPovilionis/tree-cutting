@@ -7,49 +7,44 @@ class GeoJson::Generate
   initialize_with :leidimai, :geo_json_location
 
   def run
+    @combined_plot_count = 0
+    @plots_count = plot_geoms.count
+
     generate_geo_json
   end
 
   private
 
   def generate_geo_json
-    final_sklypas = nil
-    multi_factory = RGeo::Geos.factory(srid: 4326)
-
-    plot_ids = PermitPlot.where(permit_id: leidimai.ids).pluck(:plot_id)
-    sklypai = Sklypas.where(id: plot_ids)
-
-    current_nr = 0
-    sklypai_count = sklypai.count
-
-    sklypai&.each do |sklypas|
-      final_sklypas = if !final_sklypas
-                        sklypas&.geom
-                      elsif sklypas
-                        final_sklypas.union(sklypas.geom)
-                      end
-      puts "Sklypai #{current_nr} / #{sklypai_count}"
-
-      current_nr += 1
-    end
-
-    return nil if final_sklypas.nil?
-
-    puts "Original geometry type is #{final_sklypas&.geometry_type}"
-
-    multi_final_sklypas = if final_sklypas.geometry_type.type_name == 'MultiPolygon'
-                            final_sklypas
-                          else
-                            multi_factory.multi_polygon([final_sklypas])
-                          end
-
     factory = RGeo::GeoJSON::EntityFactory.instance
 
-    feature = factory.feature multi_final_sklypas
-    puts 'Generating hash'
+    feature = factory.feature(combined_plot_multi_polygon)
+
     hash = RGeo::GeoJSON.encode feature
-    puts 'Writing JSON file'
 
     File.write(geo_json_location, hash.to_json)
+  end
+
+  def combined_plots
+    @combined_plots ||=
+      plot_geoms.reduce do |combined_geoms, plot_geom|
+        puts "plots #{@combined_plot_count += 1} / #{@plots_count}"
+
+        combined_geoms.union(plot_geom)
+      end
+  end
+
+  def combined_plot_multi_polygon
+    return combined_plots if combined_plots.geometry_type.type_name == 'MultiPolygon'
+
+    RGeo::Geos.factory(srid: 4326).multi_polygon([combined_plots])
+  end
+
+  def plot_ids
+    PermitPlot.where(permit_id: leidimai.ids).pluck(:plot_id)
+  end
+
+  def plot_geoms
+    @plot_geoms ||= Sklypas.where(id: plot_ids).pluck(:geom).compact
   end
 end
