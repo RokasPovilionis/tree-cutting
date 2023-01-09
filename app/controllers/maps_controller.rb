@@ -24,7 +24,7 @@ class MapsController < ApplicationController
 
     json += "_galiojimo_pabaiga_#{galiojimo_pabaiga_iki}" if galiojimo_pabaiga_iki
 
-    json + '.json'
+    "#{json}.json"
   end
 
   def galiojimo_pradzia_nuo
