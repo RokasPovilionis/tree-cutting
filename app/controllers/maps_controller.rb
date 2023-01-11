@@ -74,7 +74,9 @@ class MapsController < ApplicationController
     leidimai = leidimai.where('? < galiojimo_pradzia', galiojimo_pradzia_nuo) if galiojimo_pradzia_nuo
     leidimai = leidimai.where('galiojimo_pradzia < ?', galiojimo_pradzia_iki) if galiojimo_pradzia_iki
     leidimai = leidimai.where('? < galiojimo_pabaiga', galiojimo_pabaiga_nuo) if galiojimo_pabaiga_nuo
-    leidimai.where('galiojimo_pabaiga < ?', galiojimo_pabaiga_iki) if galiojimo_pabaiga_iki
+    leidimai = leidimai.where('galiojimo_pabaiga < ?', galiojimo_pabaiga_iki) if galiojimo_pabaiga_iki
+
+    leidimai
   end
 
   def galiojimo_params
