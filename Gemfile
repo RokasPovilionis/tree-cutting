@@ -40,6 +40,7 @@ gem 'devise'
 gem 'jquery-rails'
 gem 'pry'
 gem 'rgeo'
+gem 'rgeo-activerecord'
 gem 'rgeo-geojson'
 gem 'rgeo-shapefile'
 

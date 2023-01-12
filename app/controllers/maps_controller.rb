@@ -5,12 +5,13 @@ class MapsController < ApplicationController
   def index; end
 
   def create
-    GeoJson::Generate.for(leidimai, geo_json_location) unless File.exist?(geo_json_location)
+    GeoJson::Generate.for(leidimai, geo_json_location, protected_area_name) unless File.exist?(geo_json_location)
   end
 
   def map_params
-    params.permit(uredija: [], kirtimo_rusis: [], nuosavybes_forma: [])
-          .reject { |_, v| v.is_a?(Array) && v.include?('') }
+    @map_params =
+      params.permit(:saugoma_teritorija, uredija: [], kirtimo_rusis: [], nuosavybes_forma: [])
+            .reject { |_key, value| value == [''] }
   end
 
   def geo_json_location
@@ -69,8 +70,14 @@ class MapsController < ApplicationController
 
   private
 
+  def protected_area_name
+    return if map_params['saugoma_teritorija'] == ''
+
+    map_params['saugoma_teritorija']
+  end
+
   def leidimai
-    leidimai = Leidimas.where(map_params)
+    leidimai = Leidimas.where(map_params.except('saugoma_teritorija'))
     leidimai = leidimai.where('? < galiojimo_pradzia', galiojimo_pradzia_nuo) if galiojimo_pradzia_nuo
     leidimai = leidimai.where('galiojimo_pradzia < ?', galiojimo_pradzia_iki) if galiojimo_pradzia_iki
     leidimai = leidimai.where('? < galiojimo_pabaiga', galiojimo_pabaiga_nuo) if galiojimo_pabaiga_nuo

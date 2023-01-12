@@ -4,7 +4,7 @@
 class GeoJson::Generate
   include Interactor::Initializer
 
-  initialize_with :leidimai, :geo_json_location
+  initialize_with :leidimai, :geo_json_location, :protected_area_name
 
   def run
     @combined_plot_count = 0
@@ -40,11 +40,7 @@ class GeoJson::Generate
     RGeo::Geos.factory(srid: 4326).multi_polygon([combined_plots])
   end
 
-  def plot_ids
-    PermitPlot.where(permit_id: leidimai.ids).pluck(:plot_id)
-  end
-
   def plot_geoms
-    @plot_geoms ||= Sklypas.where(id: plot_ids).pluck(:geom).compact
+    @plot_geoms ||= GeoJson::GetPlotGeoms.for(leidimai, protected_area_name)
   end
 end

@@ -43,6 +43,6 @@ module MapsHelper
   end
 
   def protected_area_models
-    PROTECTED_TERITORIES_MODELS
+    GeoJson::Constants::PROTECTED_AREA_NAME_TO_MODEL.keys
   end
 end
