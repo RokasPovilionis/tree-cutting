@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_08_024348) do
-
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_231428) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -1131,8 +1130,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.string "gir_kod", null: false
     t.string "pavadinimas", null: false
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_girininkijos_on_geom", using: :gist
     t.index ["mu_kod", "gir_kod"], name: "index_girininkijos_on_mu_kod_and_gir_kod", unique: true
     t.index ["pavadinimas"], name: "index_girininkijos_on_pavadinimas"
@@ -1154,8 +1153,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.string "kirtimo_rusis", null: false
     t.date "galiojimo_pradzia", null: false
     t.date "galiojimo_pabaiga", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["created_at"], name: "index_kirtimu_leidimai_on_created_at"
   end
 
@@ -1167,8 +1166,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.string "pot_kmb_tip_kod"
     t.string "pastabos"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_kmb_geoobjektas_on_geom", using: :gist
   end
 
@@ -1177,8 +1176,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.string "gir_kod", null: false
     t.string "kv_nr", null: false
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_kvartalai_on_geom", using: :gist
     t.index ["mu_kod", "gir_kod", "kv_nr"], name: "index_kvartalai_on_mu_kod_and_gir_kod_and_kv_nr", unique: true
   end
@@ -1191,16 +1190,16 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.integer "grupe", null: false
     t.integer "pogrupis", null: false
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_misku_pogrupiai_on_geom", using: :gist
   end
 
   create_table "permit_plot", force: :cascade do |t|
     t.bigint "permit_id", null: false
     t.bigint "plot_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["permit_id"], name: "index_permit_plot_on_permit_id"
     t.index ["plot_id"], name: "index_permit_plot_on_plot_id"
   end
@@ -1216,8 +1215,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.integer "amz"
     t.integer "h"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_sklypai_on_geom", using: :gist
     t.index ["mu_kod", "gir_kod", "kv_nr", "skl_nr"], name: "index_sklypai_on_mu_kod_and_gir_kod_and_kv_nr_and_skl_nr", unique: true
   end
@@ -1226,8 +1225,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.string "mu_kod", null: false
     t.string "pavadinimas", null: false
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_uredijos_on_geom", using: :gist
     t.index ["mu_kod"], name: "index_uredijos_on_mu_kod", unique: true
     t.index ["pavadinimas"], name: "index_uredijos_on_pavadinimas"
@@ -1239,10 +1238,10 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.string "name", default: "", null: false
     t.string "roles", default: "user", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -1258,8 +1257,8 @@ ActiveRecord::Schema.define(version: 2023_01_08_024348) do
     t.string "lrv_data"
     t.integer "lrv_nr"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_valst_r_miskai_on_geom", using: :gist
   end
 
