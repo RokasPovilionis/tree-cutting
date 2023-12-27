@@ -24,7 +24,7 @@
           <%= form.date_select :galiojimo_pabaiga_nuo, {:prompt => { :month => 'Pasirinkti mėnesį', :year => 'Pasirinkti metus', :day => 'Pasirinkti dieną' }, :include_hidden => false}, :class => 'form-control date-select' %>
           <%= form.date_select :galiojimo_pabaiga_iki, {:prompt => { :month => 'Pasirinkti mėnesį', :year => 'Pasirinkti metus', :day => 'Pasirinkti dieną' }, :include_hidden => false}, :class => 'form-control date-select' %>
           <%= form.select :saugoma_teritorija, protected_area_models, { include_blank: "Nėra", include_hidden: false } %>
-          <%= form.submit class: 'btn btn-success' %>
+          <%= form.submit class: 'btn btn-success', value: "Išsaugoti" %>
         <% end %>
       </div>
     </div>
