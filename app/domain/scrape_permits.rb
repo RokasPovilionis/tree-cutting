@@ -7,18 +7,20 @@ class ScrapePermits
   PERMIT_SITE_URL = 'https://kirtleidimai.amvmt.lt/Default.aspx'
 
   REGIONS_WITH_PERMITS = [
-    'Alytaus TP',
-    'Kauno TP',
-    'Klaipėdos TP',
-    'Marijampolės TP',
-    'Miškų kontrolės skyrius',
-    'Panevėžio TP',
-    'Šiaulių TP',
-    'Utenos TP',
-    'Vilniaus TP'
+    'Ukmerges RP',
+    # 'Kauno TP',
+    # 'Klaipėdos TP',
+    # 'Marijampolės TP',
+    # 'Miškų kontrolės skyrius',
+    # 'Panevėžio TP',
+    # 'Šiaulių TP',
+    # 'Utenos TP',
+    # 'Vilniaus TP'
   ].freeze
 
   def run
+    agent.log = Logger.new(STDOUT)
+
     load_cookies
 
     scrape_permits
@@ -34,7 +36,7 @@ class ScrapePermits
   end
 
   def reset_permit_page_count
-    agent.get(PERMIT_SITE_URL)
+    agent.post(PERMIT_SITE_URL)
   end
 
   def load_cookies
@@ -42,7 +44,7 @@ class ScrapePermits
   end
 
   def initial_page
-    @initial_page ||= agent.post(PERMIT_SITE_URL)
+    @initial_page ||= agent.get(PERMIT_SITE_URL)
   end
 
   def view_state

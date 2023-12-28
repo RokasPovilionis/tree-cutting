@@ -10,7 +10,7 @@ class CollectRegionPermits
 
   def run
     puts "page count #{page_count} for region - #{region}"
-    (1..page_count).each do |page_number|
+    (2..page_count).each do |page_number|
       puts "scraping page number #{page_number} for region - #{region}"
 
       elements = parsed_page(page_number).search('tr').select { |tr| tr.attributes['bgcolor']&.value == '#DEDFDE' }
@@ -40,8 +40,6 @@ class CollectRegionPermits
       '__VIEWSTATE' => view_state,
       'rbReforma' => 'nauja',
       'metai' => 'RadioButton1',
-      'cbRegioninisPadalinys' => 'on',
-      'DropDownList3' => region
     }
   end
 end
