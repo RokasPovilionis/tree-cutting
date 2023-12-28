@@ -7,7 +7,7 @@ class ScrapePermits
   PERMIT_SITE_URL = 'https://kirtleidimai.amvmt.lt/Default.aspx'
 
   REGIONS_WITH_PERMITS = [
-    'Ukmerges RP',
+    'Anykščių RP',
     # 'Kauno TP',
     # 'Klaipėdos TP',
     # 'Marijampolės TP',
