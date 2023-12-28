@@ -3,7 +3,6 @@
 # Model for Uredijos
 class Uredija < ApplicationRecord
   self.table_name = 'uredijos'
-  self.primary_key = 'mu_kod'
 
   has_many :girininkijos, foreign_key: 'mu_kod', class_name: 'Girininkija'
   has_many :kvartalai, through: :girininkijos

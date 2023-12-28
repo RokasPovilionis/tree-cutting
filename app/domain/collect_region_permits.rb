@@ -38,9 +38,10 @@ class CollectRegionPermits
       '__EVENTTARGET' => 'GridView2',
       '__EVENTARGUMENT' => "Page$#{page_number}",
       '__VIEWSTATE' => view_state,
+      'rbReforma' => 'nauja',
       'metai' => 'RadioButton1',
-      'padaliniai' => 'RadioButton3',
-      'DropDownList1' => region
+      'cbRegioninisPadalinys' => 'on',
+      'DropDownList3' => region
     }
   end
 end

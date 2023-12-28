@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_231428) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_28_000821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -1123,6 +1123,21 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_231428) do
     t.decimal "shape_leng"
     t.decimal "shape_area"
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+  end
+
+  create_table "cutting_permits", force: :cascade do |t|
+    t.string "_type"
+    t.string "_id"
+    t.string "_revision"
+    t.float "numeris"
+    t.string "serija"
+    t.string "tipas"
+    t.float "kad_sklypo_nr"
+    t.string "mu_id"
+    t.string "ur_gir_id"
+    t.string "strukp_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "girininkijos", force: :cascade do |t|

@@ -34,6 +34,9 @@ gem 'bootstrap_form'
 gem 'bootstrap-sass'
 
 gem 'devise'
+gem 'httparty'
+gem 'open-uri'
+gem 'activerecord-import'
 
 gem 'jquery-rails'
 gem 'pry'
