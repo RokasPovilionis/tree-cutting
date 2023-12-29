@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_28_000821) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_29_175951) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -1154,15 +1154,15 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_000821) do
 
   create_table "kirtimu_leidimai", force: :cascade do |t|
     t.string "serija_ir_nr", null: false
-    t.string "regionas", null: false
-    t.string "rajonas", null: false
+    t.string "regionas"
+    t.string "rajonas"
     t.string "nuosavybes_forma", null: false
-    t.string "uredija", null: false
+    t.string "uredija"
     t.string "girininkija", null: false
     t.integer "kvartalas", null: false
     t.string "sklypai", null: false
     t.integer "plotas", null: false
-    t.integer "kad_vietove", null: false
+    t.integer "kad_vietove"
     t.integer "kad_blokas", null: false
     t.integer "kad_nr", null: false
     t.string "kirtimo_rusis", null: false
@@ -1170,6 +1170,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_28_000821) do
     t.date "galiojimo_pabaiga", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "vmu_padalinys"
+    t.string "kadastrinis_sklypas"
+    t.string "galiojimas"
     t.index ["created_at"], name: "index_kirtimu_leidimai_on_created_at"
   end
 

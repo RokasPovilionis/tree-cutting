@@ -9,7 +9,7 @@ class PermitParser
   def run
     parse_bad_plots
 
-    remove_gir_suffix_from_forestry
+    remove_girininkija_suffix_from_forestry
 
     permit_attributes
   end
@@ -31,7 +31,7 @@ class PermitParser
     plot_number
   end
 
-  def remove_gir_suffix_from_forestry
-    permit_attributes[:girininkija] = permit_attributes[:girininkija].remove(' gir')
+  def remove_girininkija_suffix_from_forestry
+    permit_attributes[:girininkija] = permit_attributes[:girininkija].remove(' girininkija')
   end
 end

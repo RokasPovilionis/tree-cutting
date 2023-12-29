@@ -33,10 +33,11 @@ gem 'activerecord-postgis-adapter'
 gem 'bootstrap_form'
 gem 'bootstrap-sass'
 
+gem 'activerecord-import'
 gem 'devise'
 gem 'httparty'
 gem 'open-uri'
-gem 'activerecord-import'
+gem 'roo'
 
 gem 'jquery-rails'
 gem 'pry'
