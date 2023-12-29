@@ -7,7 +7,7 @@ class Permit::ParseXlsx
   BATCH_SIZE = 1000
 
   def run
-    xlsx = Roo::Excelx.new("#{Rails.root}/db/permit_xlsx/permits.xlsx")
+    xlsx = Roo::Excelx.new(Permit::GetXlsx.run)
 
     row_number = 1
     xlsx.each_row_streaming(offset: 4) do |row|

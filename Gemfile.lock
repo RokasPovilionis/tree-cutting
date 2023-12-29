@@ -414,6 +414,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  stringio
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 4.1.0)

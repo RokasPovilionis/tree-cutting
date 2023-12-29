@@ -38,6 +38,7 @@ gem 'devise'
 gem 'httparty'
 gem 'open-uri'
 gem 'roo'
+gem 'stringio'
 
 gem 'jquery-rails'
 gem 'pry'
