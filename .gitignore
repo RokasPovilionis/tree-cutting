@@ -48,3 +48,6 @@ yarn-debug.log*
 .env
 .DS_Store
 TAGS
+
+/app/assets/builds/*
+!/app/assets/builds/.keep
