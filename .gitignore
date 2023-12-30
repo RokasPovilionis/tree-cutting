@@ -30,6 +30,9 @@
 /db/leidimai
 /db/eu_svarbos_buverines
 /db/valstybes_saugomu_teritoriju_kadastras
+/log/*
+!/log/.keep
+/tmp
 
 /public/geo_jsons
 
