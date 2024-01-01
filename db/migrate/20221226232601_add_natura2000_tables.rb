@@ -3,7 +3,7 @@
 # Adds tables needed for natura 2000
 class AddNatura2000Tables < ActiveRecord::Migration[6.1]
   def self.up
-    table = DBF::Table.new("#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Bast.dbf")
+    table = DBF::Table.new(GetFileByEnv.for('valstybes_saugomu_teritoriju_kadastras/BAST.dbf'))
     bonus_columns =
       "t.column \"geom\", :multi_polygon, srid: 4326, has_z: 1, has_m: 1\n   t.column \"created_at\", :date\n   t.column \"updated_at\", :date\n"
     table_schema =
@@ -14,7 +14,7 @@ class AddNatura2000Tables < ActiveRecord::Migration[6.1]
 
     eval(table_schema)
 
-    table = DBF::Table.new("#{Rails.root}/db/valstybes_saugomu_teritoriju_kadastras/Past.dbf")
+    table = DBF::Table.new(GetFileByEnv.for('valstybes_saugomu_teritoriju_kadastras/PAST.dbf'))
     bonus_columns =
       "t.column \"geom\", :multi_polygon, srid: 4326, has_z: 1, has_m: 1\n   t.column \"created_at\", :date\n   t.column \"updated_at\", :date\n"
     table_schema =
