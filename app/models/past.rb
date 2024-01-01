@@ -2,5 +2,5 @@
 
 # Model for Paukščių apsaugai svarbioms teritorijoms
 class Past < ApplicationRecord
-  self.table_name = 'Past'
+  self.table_name = 'PAST'
 end

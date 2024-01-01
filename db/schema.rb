@@ -15,7 +15,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_175951) do
   enable_extension "plpgsql"
   enable_extension "postgis"
 
-  create_table "Bast", force: :cascade do |t|
+  create_table "BAST", force: :cascade do |t|
     t.string "id_kodas", limit: 13
     t.string "sitecode", limit: 9
     t.string "gkodas", limit: 6
@@ -827,7 +827,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_175951) do
     t.date "updated_at"
   end
 
-  create_table "Past", force: :cascade do |t|
+  create_table "PAST", force: :cascade do |t|
     t.string "id_kodas", limit: 13
     t.string "sitecode", limit: 9
     t.string "gkodas", limit: 6

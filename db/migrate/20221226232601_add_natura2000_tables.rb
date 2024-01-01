@@ -4,6 +4,7 @@
 class AddNatura2000Tables < ActiveRecord::Migration[6.1]
   def self.up
     table = DBF::Table.new(GetFileByEnv.for('valstybes_saugomu_teritoriju_kadastras/BAST.dbf'))
+    table.name ||= 'BAST'
     bonus_columns =
       "t.column \"geom\", :multi_polygon, srid: 4326, has_z: 1, has_m: 1\n   t.column \"created_at\", :date\n   t.column \"updated_at\", :date\n"
     table_schema =
@@ -27,7 +28,7 @@ class AddNatura2000Tables < ActiveRecord::Migration[6.1]
   end
 
   def self.down
-    drop_table :Bast
-    drop_table :Past
+    drop_table :BAST
+    drop_table :PAST
   end
 end

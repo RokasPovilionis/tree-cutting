@@ -4,6 +4,7 @@
 class AddBiosferosRezervataiTable < ActiveRecord::Migration[6.1]
   def self.up
     table = DBF::Table.new(GetFileByEnv.for('valstybes_saugomu_teritoriju_kadastras/BiosferosRezervatai.dbf'))
+    table.name ||= 'BiosferosRezervatai'
     bonus_columns =
       "t.column \"geom\", :multi_polygon, srid: 4326, has_z: 1, has_m: 1\n   t.column \"created_at\", :date\n   t.column \"updated_at\", :date\n"
 
