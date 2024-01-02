@@ -34,7 +34,8 @@
 !/log/.keep
 /tmp
 
-/public/geo_jsons
+/public/geo_jsons/*
+!/public/geo_jsons/.gitkeep
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
