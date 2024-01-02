@@ -31,6 +31,8 @@ class GeoJson::Generate
         puts "plots #{@combined_plot_count += 1} / #{@plots_count}"
 
         combined_geoms.union(plot_geom)
+      rescue RGeo::Error::InvalidGeometry
+        combined_geoms
       end
   end
 
