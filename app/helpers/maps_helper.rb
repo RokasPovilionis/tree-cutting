@@ -31,7 +31,7 @@ module MapsHelper
   end
 
   def uredijos
-    Leidimas.distinct.pluck(:uredija).sort.reject(&:empty?)
+    Leidimas.distinct.pluck(:uredija).compact.sort.reject(&:empty?)
   end
 
   def map_params
