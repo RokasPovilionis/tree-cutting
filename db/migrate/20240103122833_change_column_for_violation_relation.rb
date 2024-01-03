@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Adds changes relation column to leidimas table
+# Changes relation column for leidimas table
 class ChangeColumnForViolationRelation < ActiveRecord::Migration[7.1]
   def change
     remove_column :cutting_violation_reports, :cutting_permit_id, :integer, null: false
