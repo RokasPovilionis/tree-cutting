@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_29_175951) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_03_115122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -1094,35 +1094,32 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_175951) do
     t.date "updated_at"
   end
 
-  create_table "bast_ref", primary_key: "gid", id: :serial, force: :cascade do |t|
-    t.string "id", limit: 13
-    t.string "sitecode", limit: 9
-    t.string "gkodas", limit: 6
-    t.string "vieta", limit: 254
-    t.decimal "lat"
-    t.decimal "lon"
-    t.string "reg_data", limit: 20
-    t.string "isreg_data", limit: 20
-    t.string "isreg_prie", limit: 254
-    t.string "kor_data", limit: 20
-    t.string "id_registr", limit: 200
-    t.string "id_regis00", limit: 200
-    t.float "id_vart"
-    t.string "pastabos", limit: 254
-    t.string "pavadinima", limit: 254
-    t.string "eng_pavadi", limit: 254
-    t.decimal "plotas"
-    t.decimal "ilgis"
-    t.float "statusas_b"
-    t.string "statuso_ta", limit: 254
-    t.string "bendr_regl", limit: 254
-    t.string "isreg_ta", limit: 254
-    t.string "steig_data", limit: 20
-    t.string "steig_tiks", limit: 254
-    t.string "eng_steig_", limit: 254
-    t.decimal "shape_leng"
-    t.decimal "shape_area"
-    t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum"
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "cutting_permits", force: :cascade do |t|
@@ -1280,4 +1277,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_29_175951) do
     t.index ["geom"], name: "index_valst_r_miskai_on_geom", using: :gist
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
 end
