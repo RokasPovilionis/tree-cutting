@@ -19,6 +19,9 @@
             <th scope="col">Kirtimo rūšis</th>
             <th scope="col">Galiojimo pradžia</th>
             <th scope="col">Galiojimo pabaiga</th>
+            <%if current_user%>
+              <th scope="col">Pranešti apie nusižengimą</th>
+            <%end%>
 
           </tr>
         </thead>
@@ -37,6 +40,9 @@
               <td><%= leidimas.kirtimo_rusis %></td>
               <td><%= leidimas.galiojimo_pradzia %></td>
               <td><%= leidimas.galiojimo_pabaiga %></td>
+              <%if current_user%>
+                <td><%= link_to 'Pranešti', new_cutting_violation_report_path(leidimas: leidimas), class: "btn btn-success" %></td>
+              <%end%>
             </tr>
           <% end %>
         </tbody>
