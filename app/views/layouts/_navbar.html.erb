@@ -8,6 +8,7 @@
       <div class="col-sm-5">
         <ul class="navbar-nav float-end">
           <li><%= link_to 'Kirtimų leidimai', leidimai_index_path(page: 1), class: 'nav-link',style: 'white-space:nowrap;' %></li>
+          <li><%= link_to 'Leidimų nusižengimai', cutting_violation_reports_path(page: 1), class: 'nav-link',style: 'white-space:nowrap;' %></li>
         <% if user_signed_in? %>
           <li><%= link_to 'Žemėlapis', maps_path, class: 'nav-link' %></li>
           <li><%= link_to 'Redaguoti profilį', edit_user_registration_path, class: 'nav-link', style: 'white-space:nowrap;' %></li>

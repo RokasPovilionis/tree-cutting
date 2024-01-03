@@ -2,7 +2,11 @@
 
 # Model for Cutting violation reports
 class CuttingViolationReport < ApplicationRecord
-  has_one :cutting_permit
-  has_one :user
+  belongs_to :leidimas
+  belongs_to :user
   has_one_attached :violation_image
+
+  def violation_image_url
+    violation_image.service.send(:object_for, violation_image.key).public_url
+  end
 end

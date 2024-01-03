@@ -1,0 +1,13 @@
+<%# image_tag @cutting_violation_report.violation_image.service.send(
+      :object_for, @cutting_violation_report.violation_image.key).public_url, class: 'header-img' %>
+
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-sm-10">
+      <%= link_to 'Grįžti atgal', cutting_violation_reports_path, class: "btn btn-success my-3" %>
+
+      <%= image_tag @cutting_violation_report.violation_image_url, class: 'img-fluid rounded d-block' %>
+    </div>
+  </div>
+</div>
+
