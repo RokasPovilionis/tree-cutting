@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_03_134326) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_05_015739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -1178,7 +1178,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_03_134326) do
     t.string "vmu_padalinys"
     t.string "kadastrinis_sklypas"
     t.string "galiojimas"
+    t.boolean "is_notification_sent", default: false, null: false
     t.index ["created_at"], name: "index_kirtimu_leidimai_on_created_at"
+    t.index ["is_notification_sent"], name: "index_kirtimu_leidimai_on_is_notification_sent"
   end
 
   create_table "kmb_geoobjektas", force: :cascade do |t|
