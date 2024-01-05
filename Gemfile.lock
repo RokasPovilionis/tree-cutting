@@ -422,6 +422,7 @@ DEPENDENCIES
   kimurai
   listen (~> 3.3)
   mechanize
+  nokogiri
   open-uri
   pg (~> 1.1)
   pry
