@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :maps
   resources :leidimai
   resources :cutting_violation_reports
+  resources :permit_location_subscriptions, only: %i[new create]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

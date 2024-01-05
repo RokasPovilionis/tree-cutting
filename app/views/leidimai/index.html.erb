@@ -3,6 +3,7 @@
     <div class="col col-sm-10">
 
       <%= link_to 'Sukurti naują leidimą', new_leidimai_path, class: "btn btn-success my-3" if current_user&.roles == 'admin'%>
+      <%= link_to 'Informuoti apie naujus leidimus', new_permit_location_subscription_path, class: "btn btn-success my-3" if current_user%>
 
 
       <table class="table table-bordered table-hover">

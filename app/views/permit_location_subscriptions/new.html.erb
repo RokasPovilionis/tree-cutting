@@ -1,0 +1,12 @@
+<div class="container" id="sign-up-form">
+  <div class="row justify-content-center">
+    <div class="col-sm-offset-4 col-sm-8 mb-4">
+      <h3>Informuoti mane apie naujus kirtimų leidimus</h3>
+      <%= bootstrap_form_for(@permit_location_subscription, :url => permit_location_subscriptions_path) do |f| %>
+        <%= f.select :girininkija, Leidimas.distinct.pluck(:girininkija).compact.sort.reject(&:empty?), { :include_hidden => false }, { :multiple => false } %>
+        <%= f.text_field :kvartalas, label: 'kvartalas', placeholder: 'kvartalo numeris', class: 'form-control' %>
+        <%= f.submit 'Informuoti mane', class: 'btn btn-success sign-up-button' %>
+      <% end %>
+    </div>
+  </div>
+</div>
