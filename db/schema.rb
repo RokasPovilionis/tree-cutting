@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_05_015739) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -1218,6 +1218,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_015739) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["geom"], name: "index_misku_pogrupiai_on_geom", using: :gist
+  end
+
+  create_table "permit_location_subscriptions", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "girininkija", null: false
+    t.integer "kvartalas"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["girininkija", "kvartalas"], name: "idx_on_girininkija_kvartalas_0c554ee4df"
+    t.index ["user_id"], name: "index_permit_location_subscriptions_on_user_id"
   end
 
   create_table "permit_plot", force: :cascade do |t|
