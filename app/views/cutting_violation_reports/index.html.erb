@@ -12,9 +12,7 @@
             <th scope="col">Leidimo numeris</th>
             <th scope="col">Apibrėžimas</th>
             <th scope="col">Pranešimo sukurimo data</th>
-            <%if current_user %>
-              <th scope="col">Peržiūrėti nusižengimo nuotrauką</th>
-            <%end%>
+            <th scope="col">Peržiūrėti nusižengimo nuotrauką</th>
 
           </tr>
         </thead>
@@ -26,9 +24,7 @@
               <td><%= violation.leidimas_id %></td>
               <td><%= violation.description %></td>
               <td><%= violation.created_at %></td>
-              <%if current_user%>
-                <td><%= link_to 'Peržiūrėti', cutting_violation_report_path(violation), class: "btn btn-success" %></td>
-              <%end%>
+              <td><%= link_to 'Peržiūrėti', cutting_violation_report_path(violation), class: "btn btn-success" %></td>
             </tr>
           <% end %>
         </tbody>

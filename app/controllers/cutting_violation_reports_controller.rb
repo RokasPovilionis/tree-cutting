@@ -2,6 +2,7 @@
 
 # Controller for cutting permit violation reports
 class CuttingViolationReportsController < ApplicationController
+  skip_before_action :authorized, only: [:index, :show]
   def index
     @cutting_violation_reports = CuttingViolationReport.order(:created_at).paginate(page: params[:page], per_page: 25)
   end
