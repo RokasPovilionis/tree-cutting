@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_06_113948) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_BAST_on_geom", using: :gist
   end
 
   create_table "BiosferosPoligonai", force: :cascade do |t|
@@ -92,6 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_BiosferosPoligonai_on_geom", using: :gist
   end
 
   create_table "BiosferosRezervatai", force: :cascade do |t|
@@ -141,6 +143,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_BiosferosRezervatai_on_geom", using: :gist
   end
 
   create_table "Botaniniai_GPO_Plot", force: :cascade do |t|
@@ -219,6 +222,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Botaniniai_GPO_Plot_on_geom", using: :gist
   end
 
   create_table "Botaniniai_GPO_Task", force: :cascade do |t|
@@ -298,6 +302,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"st_point", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Botaniniai_GPO_Task_on_geom", using: :gist
   end
 
   create_table "BuferinesApsaugosZonos", force: :cascade do |t|
@@ -337,6 +342,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_BuferinesApsaugosZonos_on_geom", using: :gist
   end
 
   create_table "Draustiniai", force: :cascade do |t|
@@ -394,6 +400,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Draustiniai_on_geom", using: :gist
   end
 
   create_table "FunkcinioPrioritetoZonos", force: :cascade do |t|
@@ -442,6 +449,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_FunkcinioPrioritetoZonos_on_geom", using: :gist
   end
 
   create_table "Geologiniai_GPO_Plot", force: :cascade do |t|
@@ -517,6 +525,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Geologiniai_GPO_Plot_on_geom", using: :gist
   end
 
   create_table "Geologiniai_GPO_Task", force: :cascade do |t|
@@ -592,6 +601,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"st_point", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Geologiniai_GPO_Task_on_geom", using: :gist
   end
 
   create_table "Geomorfologiniai_GPO_Plot", force: :cascade do |t|
@@ -666,6 +676,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Geomorfologiniai_GPO_Plot_on_geom", using: :gist
   end
 
   create_table "Hidrogeologiniai_GPO_Plot", force: :cascade do |t|
@@ -750,6 +761,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Hidrogeologiniai_GPO_Plot_on_geom", using: :gist
   end
 
   create_table "Hidrografiniai_GPO_Plot", force: :cascade do |t|
@@ -825,6 +837,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Hidrografiniai_GPO_Plot_on_geom", using: :gist
   end
 
   create_table "PAST", force: :cascade do |t|
@@ -855,6 +868,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_PAST_on_geom", using: :gist
   end
 
   create_table "Rezervatai", force: :cascade do |t|
@@ -909,6 +923,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Rezervatai_on_geom", using: :gist
   end
 
   create_table "STK_Parkai", force: :cascade do |t|
@@ -965,6 +980,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_STK_Parkai_on_geom", using: :gist
   end
 
   create_table "STK_Sklypai", force: :cascade do |t|
@@ -1015,6 +1031,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_STK_Sklypai_on_geom", using: :gist
   end
 
   create_table "Zoologiniai_GPO_Plot", force: :cascade do |t|
@@ -1092,6 +1109,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_020840) do
     t.geometry "geom", limit: {:srid=>4326, :type=>"multi_polygon", :has_z=>true, :has_m=>true}
     t.date "created_at"
     t.date "updated_at"
+    t.index ["geom"], name: "index_Zoologiniai_GPO_Plot_on_geom", using: :gist
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
