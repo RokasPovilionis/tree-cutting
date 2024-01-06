@@ -16,30 +16,20 @@ class GeoJson::Generate
   private
 
   def generate_geo_json
-    factory = RGeo::GeoJSON::EntityFactory.instance
+    geojson_feature_collection = RGeo::GeoJSON::FeatureCollection.new(combined_plots)
 
-    feature = factory.feature(combined_plot_multi_polygon)
+    geojson = RGeo::GeoJSON.encode(geojson_feature_collection)
 
-    hash = RGeo::GeoJSON.encode feature
-
-    File.write(geo_json_location, hash.to_json)
+    File.write(geo_json_location, geojson.to_json)
   end
 
   def combined_plots
     @combined_plots ||=
-      plot_geoms.reduce do |combined_geoms, plot_geom|
+      plot_geoms.map do |geom|
         puts "plots #{@combined_plot_count += 1} / #{@plots_count}"
 
-        combined_geoms.union(plot_geom)
-      rescue RGeo::Error::InvalidGeometry
-        combined_geoms
+        RGeo::GeoJSON::Feature.new(geom)
       end
-  end
-
-  def combined_plot_multi_polygon
-    return combined_plots if combined_plots.geometry_type.type_name == 'MultiPolygon'
-
-    RGeo::Geos.factory(srid: 4326).multi_polygon([combined_plots])
   end
 
   def plot_geoms

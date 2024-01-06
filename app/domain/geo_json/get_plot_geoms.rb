@@ -31,7 +31,7 @@ class GeoJson::GetPlotGeoms
       .pluck(:geom)
   end
 
-    # old_result = protected_area_model.all.pluck(:geom).flat_map do |protected_area_geom|
-    #   Sklypas.where(id: plot_ids).where(Sklypas.arel_table[:geom].st_intersects(protected_area_geom)).pluck(:geom).compact
-    # end
+  # old_result = protected_area_model.all.pluck(:geom).flat_map do |protected_area_geom|
+  #   Sklypas.where(id: plot_ids).where(Sklypas.arel_table[:geom].st_intersects(protected_area_geom)).pluck(:geom).compact
+  # end
 end
