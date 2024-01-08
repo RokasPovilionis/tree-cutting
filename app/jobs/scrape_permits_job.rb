@@ -2,11 +2,9 @@
 
 # Class used for housing the job for scraping permits
 class ScrapePermitsJob < ApplicationJob
-  queue_as :default
+  queue_as :low_priority
 
   def perform
-    Leidimas.delete_all
-
-    ScrapePermits.run
+    Permit::ParseXlsx.run
   end
 end

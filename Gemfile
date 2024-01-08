@@ -62,6 +62,8 @@ gem 'dotenv-rails'
 gem 'kimurai'
 gem 'mechanize'
 
+gem 'ruby-lsp'
+
 gem 'rack-mini-profiler', '~> 2.0'
 
 group :development, :test do
