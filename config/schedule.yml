@@ -1,3 +1,7 @@
 permit_scraping_job:
    cron: "* 4 * * *"
    class: "ScrapePermitsJob"
+
+send_notification_to_subscribers:
+   cron: "* 7 * * *"
+   class: "SendEmailsJob"
