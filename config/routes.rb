@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'registrations' }
   devise_scope :user do
@@ -13,5 +15,7 @@ Rails.application.routes.draw do
   resources :leidimai
   resources :cutting_violation_reports
   resources :permit_location_subscriptions, only: %i[new create]
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  authenticated :user, ->(user) { user.roles == 'admin' } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 end
