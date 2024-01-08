@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -22,6 +24,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'redis'
 gem 'sidekiq'
+gem 'sidekiq-cron'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

@@ -1,0 +1,3 @@
+permit_scraping_job:
+   cron: "* 4 * * *"
+   class: "ScrapePermitsJob"
