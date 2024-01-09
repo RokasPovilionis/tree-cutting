@@ -15,17 +15,17 @@ class MapsController < ApplicationController
   end
 
   def geo_json_location
-    json = "public/geo_jsons/sklypai_with_leidimai_#{map_params.to_s.parameterize(separator: '_')}"
+    key = map_params.to_s.parameterize(separator: '_').to_s
 
-    json += "_galiojimo_pradzia_#{galiojimo_pradzia_nuo}" if galiojimo_pradzia_nuo
+    key += "_galiojimo_pradzia_#{galiojimo_pradzia_nuo}" if galiojimo_pradzia_nuo
 
-    json += "_galiojimo_pradzia_#{galiojimo_pradzia_iki}" if galiojimo_pradzia_iki
+    key += "_galiojimo_pradzia_#{galiojimo_pradzia_iki}" if galiojimo_pradzia_iki
 
-    json += "_galiojimo_pabaiga_#{galiojimo_pabaiga_nuo}" if galiojimo_pabaiga_nuo
+    key += "_galiojimo_pabaiga_#{galiojimo_pabaiga_nuo}" if galiojimo_pabaiga_nuo
 
-    json += "_galiojimo_pabaiga_#{galiojimo_pabaiga_iki}" if galiojimo_pabaiga_iki
+    key += "_galiojimo_pabaiga_#{galiojimo_pabaiga_iki}" if galiojimo_pabaiga_iki
 
-    "#{json}.json"
+    "public/geo_jsons/#{Digest::MD5.hexdigest(key)}.json"
   end
 
   def galiojimo_pradzia_nuo

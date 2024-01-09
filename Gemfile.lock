@@ -144,6 +144,7 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    digest (3.1.1)
     domain_name (0.6.20231109)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
@@ -433,6 +434,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   cssbundling-rails
   devise
+  digest
   dotenv-rails
   httparty
   interactor-initializer

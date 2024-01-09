@@ -43,6 +43,7 @@ gem 'bootstrap-sass'
 
 gem 'activerecord-import'
 gem 'devise'
+gem 'digest'
 gem 'httparty'
 gem 'open-uri'
 gem 'roo'
