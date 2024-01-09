@@ -34,6 +34,22 @@ module MapsHelper
     Leidimas.distinct.pluck(:uredija).compact.sort.reject(&:empty?)
   end
 
+  def galiojimas_pradzia_start_year
+    Leidimas.minimum(:galiojimo_pradzia).year
+  end
+
+  def galiojimas_pradzia_end_year
+    Leidimas.maximum(:galiojimo_pradzia).year
+  end
+
+  def galiojimas_pabaiga_start_year
+    Leidimas.minimum(:galiojimo_pabaiga).year
+  end
+
+  def galiojimas_pabaiga_end_year
+    Leidimas.maximum(:galiojimo_pabaiga).year
+  end
+
   def map_params
     controller.map_params
   end
