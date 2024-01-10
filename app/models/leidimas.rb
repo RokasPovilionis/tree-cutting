@@ -7,8 +7,13 @@ class Leidimas < ApplicationRecord
   has_many :cutting_violation_reports, dependent: :destroy
 
   after_create :create_permit_plots
+  after_create :notify_subscribers
 
   def create_permit_plots
     PopulatePermitPlotConnections.for(self)
+  end
+
+  def notify_subscribers
+    SendNotificationsToSubscribers.for([self])
   end
 end
