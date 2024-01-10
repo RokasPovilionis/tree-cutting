@@ -36,8 +36,4 @@ class SendNotificationsToSubscribers
   def girininkija_and_kvartalas_pairs
     leidimai.pluck(:girininkija, :kvartalas).uniq
   end
-
-  def leidimai
-    @leidimai ||= Leidimas.where(is_notification_sent: false)
-  end
 end
