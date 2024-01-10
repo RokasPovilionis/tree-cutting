@@ -7,27 +7,64 @@
           display: inline-block;
           width: 30%;
       }
+      #loader {
+        display: none;
+        position: fixed; /* Stay in place */
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgba(0,0,0,0.4);
+        backdrop-filter: blur(0.5px);
+      }
+
+      /* Center the loader */
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
     </style>
   </head>
   <body>
-  <div class="container-fluid">
-    <div class="row justify-content-center">
-
-      <div class="col-sm-4">
-        <h2 class="text-center">Prašome pasirinkti kokie kirtimai jus domina</h2>
-        <%= bootstrap_form_with url: '/maps', remote: true do |form| %>
-          <%= form.select :uredija, uredijos, { include_blank: "Visos urėdijos", include_hidden: false }, { multiple: true } %>
-          <%= form.select :kirtimo_rusis, kirtimo_tipai, { include_blank: "Visi kiritimo būdai", include_hidden: false }, { multiple: true } %>
-          <%= form.select :nuosavybes_forma, nuosavybes_formos, { include_blank: "Visos nuosavybės formos", include_hidden: false }, { multiple: true } %>
-          <%= form.date_select :galiojimo_pradzia_nuo, { start_year: galiojimas_pradzia_start_year, end_year: galiojimas_pradzia_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-          <%= form.date_select :galiojimo_pradzia_iki, { start_year: galiojimas_pradzia_start_year, end_year: galiojimas_pradzia_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-          <%= form.date_select :galiojimo_pabaiga_nuo, { start_year: galiojimas_pabaiga_start_year, end_year: galiojimas_pabaiga_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-          <%= form.date_select :galiojimo_pabaiga_iki, { start_year: galiojimas_pabaiga_start_year, end_year: galiojimas_pabaiga_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-          <%= form.select :saugoma_teritorija, protected_area_models, { include_blank: "Nėra", include_hidden: false } %>
-          <%= form.submit class: 'btn btn-success', value: "Išsaugoti" %>
-        <% end %>
+    <div id="loader" class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="text-center mt-5">
+          <div class="spinner-border" role="status">
+            <span class="sr-only"></span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+    <div class='container-fluid'>
+      <div class='row justify-content-center'>
+        <div class='col-sm-4'>
+          <h2 class='text-center'>Prašome pasirinkti kokie kirtimai jus domina</h2>
+          <%= bootstrap_form_with url: '/maps', remote: true do |form| %>
+            <%= form.select :uredija, uredijos, { include_blank: 'Visos urėdijos', include_hidden: false }, { multiple: true } %>
+            <%= form.select :kirtimo_rusis, kirtimo_tipai, { label: 'Kirtimo rūšis',include_blank: 'Visi kiritimo būdai', include_hidden: false }, { multiple: true } %>
+            <%= form.select :nuosavybes_forma, nuosavybes_formos, { include_blank: 'Visos nuosavybės formos', include_hidden: false }, { multiple: true } %>
+            <%= form.date_select :galiojimo_pradzia_nuo, { label: 'Galiojimo pradžia nuo', start_year: galiojimas_pradzia_start_year, end_year: galiojimas_pradzia_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
+            <%= form.date_select :galiojimo_pradzia_iki, { label: 'Galiojimo pradžia iki', start_year: galiojimas_pradzia_start_year, end_year: galiojimas_pradzia_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
+            <%= form.date_select :galiojimo_pabaiga_nuo, { label: 'Galiojimo pabaiga nuo', start_year: galiojimas_pabaiga_start_year, end_year: galiojimas_pabaiga_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
+            <%= form.date_select :galiojimo_pabaiga_iki, { label: 'Galiojimo pabaiga iki', start_year: galiojimas_pabaiga_start_year, end_year: galiojimas_pabaiga_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
+            <%= form.select :saugoma_teritorija, protected_area_models, { include_blank: 'Nėra', include_hidden: false } %>
+            <%= form.check_box :generuoti_naujausius_duomenis %>
+            <%= form.submit class: 'btn btn-success', value: 'Išsaugoti', id: 'load-data-button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script> <!-- Include jQuery -->
+    <script>
+      $(document).ready(function() {
+        $('#load-data-button').click(function() {
+          $('#loader').show();
+        });
+      });
+    </script>
   </body>
 </html>

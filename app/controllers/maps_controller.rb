@@ -5,6 +5,7 @@ class MapsController < ApplicationController
   def index; end
 
   def create
+    File.delete(geo_json_location) if params[:generuoti_naujausius_duomenis] && File.exist?(geo_json_location)
     GeoJson::Generate.for(leidimai, geo_json_location, protected_area_name) unless File.exist?(geo_json_location)
   end
 
@@ -15,17 +16,7 @@ class MapsController < ApplicationController
   end
 
   def geo_json_location
-    key = map_params.to_s.parameterize(separator: '_').to_s
-
-    key += "_galiojimo_pradzia_#{galiojimo_pradzia_nuo}" if galiojimo_pradzia_nuo
-
-    key += "_galiojimo_pradzia_#{galiojimo_pradzia_iki}" if galiojimo_pradzia_iki
-
-    key += "_galiojimo_pabaiga_#{galiojimo_pabaiga_nuo}" if galiojimo_pabaiga_nuo
-
-    key += "_galiojimo_pabaiga_#{galiojimo_pabaiga_iki}" if galiojimo_pabaiga_iki
-
-    "public/geo_jsons/#{Digest::MD5.hexdigest(key)}.json"
+    @geo_json_location ||= "public/geo_jsons/#{Digest::MD5.hexdigest(geo_json_key)}.json"
   end
 
   def galiojimo_pradzia_nuo
@@ -69,6 +60,20 @@ class MapsController < ApplicationController
   end
 
   private
+
+  def geo_json_key
+    key = map_params.to_s.parameterize(separator: '_').to_s
+
+    key += "_galiojimo_pradzia_#{galiojimo_pradzia_nuo}" if galiojimo_pradzia_nuo
+
+    key += "_galiojimo_pradzia_#{galiojimo_pradzia_iki}" if galiojimo_pradzia_iki
+
+    key += "_galiojimo_pabaiga_#{galiojimo_pabaiga_nuo}" if galiojimo_pabaiga_nuo
+
+    key += "_galiojimo_pabaiga_#{galiojimo_pabaiga_iki}" if galiojimo_pabaiga_iki
+
+    key
+  end
 
   def protected_area_name
     return if map_params['saugoma_teritorija'] == ''
