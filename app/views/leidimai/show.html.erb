@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      #mapDiv {
+        height: 800px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="mx-4">Miško kirtimo leidimo žemėlapis</h2>
+    <%= link_to "Grįžti", :back, class: 'btn btn-success mx-4 mb-4' %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-8 mx-4" id="mapDiv"></div>
+        <div class="col-sm-3 mx-5">
+          <div class="card">
+            <h5 class="card-header">Parametrai</h5>
+            <ul class="nav flex-column pb-3">
+              <% leidimas_params_for_display(@leidimas).each do |key, value| %>
+                <li class="container px-3 pt-3">
+                  <div class="row align-content-between">
+                    <div class="col text-left">
+                      <%= key.humanize.capitalize + ':' %>
+                    </div>
+                    <div class="col text-right">
+                      <%= value.to_s %>
+                    </div>
+                  </div>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      var map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('mapDiv'), {
+          zoom: 8,
+          center: new google.maps.LatLng(55.1694, 23.8813),
+          mapTypeId: 'terrain'
+        });
+
+        var geoJsonData = <%= GeoJson::Generate.for([@leidimas], nil, nil, false).html_safe %>;
+        map.data.addGeoJson(geoJsonData);
+        var bounds = new google.maps.LatLngBounds();
+        var color = "green";
+
+        map.data.setStyle(function(feature) {
+          return {
+            fillColor: color,
+            strokeWeight: 1
+          };
+        });
+
+        map.data.forEach(function(feature) {
+          processPoints(feature.getGeometry(), bounds.extend, bounds);
+        });
+
+        if (!bounds.isEmpty()) {
+            map.fitBounds(bounds, 250);
+        } else {
+            map.setCenter(new google.maps.LatLng(55.1694, 23.8813));
+            map.setZoom(8);
+        }
+      }
+
+      function processPoints(geometry, callback, thisArg) {
+        if (geometry instanceof google.maps.LatLng) {
+          callback.call(thisArg, geometry);
+        } else if (geometry instanceof google.maps.Data.Point) {
+          callback.call(thisArg, geometry.get());
+        } else {
+          geometry.getArray().forEach(function(g) {
+            processPoints(g, callback, thisArg);
+          });
+        }
+      }
+    </script>
+
+
+    <script
+      async
+      defer
+      src="<%= "https://maps.googleapis.com/maps/api/js?key=#{ENV['GOOGLE_MAPS_KEY']}&callback=initMap" %>">
+    </script>
+  </body>
+</html>

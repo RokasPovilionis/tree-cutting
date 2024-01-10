@@ -4,7 +4,7 @@
 class GeoJson::Generate
   include Interactor::Initializer
 
-  initialize_with :leidimai, :geo_json_location, :protected_area_name
+  initialize_with :leidimai, :geo_json_location, :protected_area_name, :write_to_file
 
   def run
     @combined_plot_count = 0
@@ -20,7 +20,10 @@ class GeoJson::Generate
 
     geojson = RGeo::GeoJSON.encode(geojson_feature_collection)
 
+    return geojson.to_json unless write_to_file
+
     File.write(geo_json_location, geojson.to_json)
+    geo_json_location
   end
 
   def combined_plots

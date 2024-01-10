@@ -6,7 +6,7 @@ class MapsController < ApplicationController
 
   def create
     File.delete(geo_json_location) if params[:generuoti_naujausius_duomenis] && File.exist?(geo_json_location)
-    GeoJson::Generate.for(leidimai, geo_json_location, protected_area_name) unless File.exist?(geo_json_location)
+    GeoJson::Generate.for(leidimai, geo_json_location, protected_area_name, true) unless File.exist?(geo_json_location)
   end
 
   def map_params

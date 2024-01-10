@@ -22,6 +22,7 @@
             <th scope="col">Galiojimo pabaiga</th>
             <%if current_user%>
               <th scope="col">Pranešti apie nusižengimą</th>
+              <th scope="col">Peržiūrėti leidimą žemėlapyje</th>
             <%end%>
 
           </tr>
@@ -43,6 +44,7 @@
               <td><%= leidimas.galiojimo_pabaiga %></td>
               <%if current_user%>
                 <td><%= link_to 'Pranešti', new_cutting_violation_report_path(leidimas: leidimas), class: "btn btn-success" %></td>
+                <td><%= link_to 'Peržiūrėti', leidimai_path(leidimas), class: "btn btn-success" %></td>
               <%end%>
             </tr>
           <% end %>

@@ -13,7 +13,7 @@ class GeoJson::GetPlotGeoms
   private
 
   def plot_ids
-    PermitPlot.where(permit_id: leidimai.ids).pluck(:plot_id)
+    PermitPlot.where(permit_id: leidimai.pluck(:id)).pluck(:plot_id)
   end
 
   def plot_geoms

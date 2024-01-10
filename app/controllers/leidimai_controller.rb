@@ -2,10 +2,15 @@
 
 # Controller for leidimai screen
 class LeidimaiController < ApplicationController
-  skip_before_action :authorized, only: [:index]
+  skip_before_action :authorized, only: %i[index show]
 
   def index
     @leidimai = Leidimas.order(:created_at).paginate(page: params[:page], per_page: 25)
+  end
+
+  def show
+    @leidimas = Leidimas.find(params[:id])
+    @geo_json = GeoJson::Generate.for([@leidimas], 'public/geo_jsons/lalal.json', nil, true)
   end
 
   def new
