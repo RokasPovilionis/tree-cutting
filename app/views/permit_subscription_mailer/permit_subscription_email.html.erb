@@ -1,6 +1,6 @@
 <h1>Sveiki <%= @user.name %>, Naujas kirtimų leidimas buvo pridėtas teritorijoje, kurią Jūs sekate </h1>
 <p>
   Daugiau informacijos apie naują kirtimų leidimą galite rasti žemiau:
-  xxx
+  <%= ENV['BASE_URL'] + "/leidimai/#{@leidimas_id}" %>
 </p>
 <p>Ačiū, kad naudojates mūsų programa ir linkime Jums geros dienos!</p>

@@ -11,7 +11,9 @@ class SendNotificationsToSubscribers
       relevant_subscriptions =
         subscriptions_by_pair[[leidimas.girininkija, leidimas.kvartalas] || [leidimas.girininkija, nil]]
 
-      relevant_subscriptions.each { |subscription| deliver_email(subscription.user) } if relevant_subscriptions.present?
+      if relevant_subscriptions.present?
+        relevant_subscriptions.each { |subscription| deliver_email(subscription.user, leidimas.id) }
+      end
 
       leidimas.update(is_notification_sent: true)
     end
@@ -19,8 +21,8 @@ class SendNotificationsToSubscribers
 
   private
 
-  def deliver_email(user)
-    PermitSubscriptionMailer.permit_subscription_email(user).deliver_later
+  def deliver_email(user, leidimas_id)
+    PermitSubscriptionMailer.permit_subscription_email(user, leidimas_id).deliver_later
   end
 
   def subscriptions_by_pair
