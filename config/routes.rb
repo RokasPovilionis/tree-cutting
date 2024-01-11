@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :leidimai
   resources :cutting_violation_reports
   resources :permit_location_subscriptions, only: %i[new create]
+  resources :user_saved_searches, only: %i[new create]
+  post 'new_saved_search', to: 'user_saved_searches#new_saved_search', as: :new_saved_search
   authenticated :user, ->(user) { user.roles == 'admin' } do
     mount Sidekiq::Web => '/sidekiq'
   end
