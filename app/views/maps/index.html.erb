@@ -87,7 +87,7 @@
 
               <%= form.select :saugoma_teritorija, protected_area_models, { include_blank: 'Nėra', include_hidden: false, selected: @search_params['saugoma_teritorija'] } %>
               <%= form.check_box :generuoti_naujausius_duomenis, checked: @search_params['generuoti_naujausius_duomenis'] == '1' %>
-              <%= form.submit class: 'btn btn-success', value: 'Generuoti vizaulizaciją', id: 'load-data-button' %>
+              <%= form.submit class: 'btn btn-success', value: 'Generuoti vizualizaciją', id: 'load-data-button' %>
               <%= form.submit class: 'btn btn-success', value: "Įsiminti užklausą", formaction: new_saved_search_path %>
             <% end %>
           </div>
