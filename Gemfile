@@ -68,6 +68,8 @@ gem 'mechanize'
 
 gem 'ruby-lsp'
 
+gem 'letter_opener'
+
 gem 'rack-mini-profiler', '~> 2.0'
 
 group :development, :test do
