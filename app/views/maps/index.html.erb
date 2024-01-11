@@ -54,6 +54,7 @@
             <%= form.select :saugoma_teritorija, protected_area_models, { include_blank: 'Nėra', include_hidden: false } %>
             <%= form.check_box :generuoti_naujausius_duomenis %>
             <%= form.submit class: 'btn btn-success', value: 'Išsaugoti', id: 'load-data-button' %>
+            <%= form.submit class: 'btn btn-success', value: "Įsiminti užklausą", formaction: new_saved_search_path %>
           <% end %>
         </div>
       </div>
