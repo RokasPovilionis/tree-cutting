@@ -18,16 +18,18 @@
             <h5 class="card-header">Parametrai</h5>
             <ul class="nav flex-column pb-3">
               <% map_params.each do |key, value| %>
-                <li class="container px-3 pt-3">
-                  <div class="row align-content-between">
-                    <div class="col text-left">
-                      <%= key.humanize.to_s + ':' %>
+                <% if value.present? %>
+                  <li class="container px-3 pt-3">
+                    <div class="row align-content-between">
+                      <div class="col text-left">
+                        <%= key.humanize.to_s + ':' %>
+                      </div>
+                      <div class="col text-right">
+                        <%= value.to_s.delete('[]""') %>
+                      </div>
                     </div>
-                    <div class="col text-right">
-                      <%= value.to_s.delete('[]""') %>
-                    </div>
-                  </div>
-                </li>
+                  </li>
+                <% end %>
               <% end %>
             </ul>
           </div>
