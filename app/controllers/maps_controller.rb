@@ -2,7 +2,9 @@
 
 # Controller for maps
 class MapsController < ApplicationController
-  def index; end
+  def index
+    @user_saved_searches = UserSavedSearch.where(user_id: current_user.id).limit(5)
+  end
 
   def create
     File.delete(geo_json_location) if params[:generuoti_naujausius_duomenis] && File.exist?(geo_json_location)
