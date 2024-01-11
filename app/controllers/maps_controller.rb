@@ -3,7 +3,9 @@
 # Controller for maps
 class MapsController < ApplicationController
   def index
+    @search_params = session[:search_params] ? eval(session[:search_params]) : {}
     @user_saved_searches = UserSavedSearch.where(user_id: current_user.id).limit(5)
+    session.delete(:search_params)
   end
 
   def create

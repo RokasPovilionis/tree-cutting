@@ -19,7 +19,14 @@ class UserSavedSearchesController < ApplicationController
       search_name: saved_search_name,
       search_params: session[:search_params]
     )
+    session.delete(:search_params)
 
+    redirect_to maps_path
+  end
+
+  def show
+    @user_saved_search = UserSavedSearch.find(params[:id])
+    session[:search_params] = @user_saved_search.search_params
     redirect_to maps_path
   end
 

@@ -45,15 +45,48 @@
           <div class='py-3'>
             <h2 class='text-center'>Prašome pasirinkti kokie kirtimai jus domina</h2>
             <%= bootstrap_form_with url: '/maps', remote: true do |form| %>
-              <%= form.select :uredija, uredijos, { include_blank: 'Visos urėdijos', include_hidden: false }, { multiple: true } %>
-              <%= form.select :kirtimo_rusis, kirtimo_tipai, { label: 'Kirtimo rūšis',include_blank: 'Visi kiritimo būdai', include_hidden: false }, { multiple: true } %>
-              <%= form.select :nuosavybes_forma, nuosavybes_formos, { include_blank: 'Visos nuosavybės formos', include_hidden: false }, { multiple: true } %>
-              <%= form.date_select :galiojimo_pradzia_nuo, { label: 'Galiojimo pradžia nuo', start_year: galiojimas_pradzia_start_year, end_year: galiojimas_pradzia_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-              <%= form.date_select :galiojimo_pradzia_iki, { label: 'Galiojimo pradžia iki', start_year: galiojimas_pradzia_start_year, end_year: galiojimas_pradzia_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-              <%= form.date_select :galiojimo_pabaiga_nuo, { label: 'Galiojimo pabaiga nuo', start_year: galiojimas_pabaiga_start_year, end_year: galiojimas_pabaiga_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-              <%= form.date_select :galiojimo_pabaiga_iki, { label: 'Galiojimo pabaiga iki', start_year: galiojimas_pabaiga_start_year, end_year: galiojimas_pabaiga_end_year, prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' }, include_hidden: false}, class: 'form-control date-select' %>
-              <%= form.select :saugoma_teritorija, protected_area_models, { include_blank: 'Nėra', include_hidden: false } %>
-              <%= form.check_box :generuoti_naujausius_duomenis %>
+              <%= form.select :uredija, uredijos, { include_blank: 'Visos urėdijos', include_hidden: false, selected: @search_params['uredija'] }, { multiple: true } %>
+              <%= form.select :kirtimo_rusis, kirtimo_tipai, { label: 'Kirtimo rūšis', include_blank: 'Visi kiritimo būdai', include_hidden: false, selected: @search_params['kirtimo_rusis'] }, { multiple: true } %>
+              <%= form.select :nuosavybes_forma, nuosavybes_formos, { include_blank: 'Visos nuosavybės formos', include_hidden: false, selected: @search_params['nuosavybes_forma'] }, { multiple: true } %>
+
+              <%= form.date_select :galiojimo_pradzia_nuo, {
+                label: 'Galiojimo pradžia nuo',
+                start_year: galiojimas_pradzia_start_year,
+                end_year: galiojimas_pradzia_end_year,
+                prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' },
+                include_hidden: false,
+                selected: extract_date(@search_params, 'galiojimo_pradzia_nuo')
+              }, class: 'form-control date-select' %>
+
+              <%= form.date_select :galiojimo_pradzia_iki, {
+                label: 'Galiojimo pradžia iki',
+                start_year: galiojimas_pradzia_start_year,
+                end_year: galiojimas_pradzia_end_year,
+                prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' },
+                include_hidden: false,
+                selected: extract_date(@search_params, 'galiojimo_pradzia_iki')
+              }, class: 'form-control date-select' %>
+
+              <%= form.date_select :galiojimo_pabaiga_nuo, {
+                label: 'Galiojimo pabaiga nuo',
+                start_year: galiojimas_pabaiga_start_year,
+                end_year: galiojimas_pabaiga_end_year,
+                prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' },
+                include_hidden: false,
+                selected: extract_date(@search_params, 'galiojimo_pabaiga_nuo')
+              }, class: 'form-control date-select' %>
+
+              <%= form.date_select :galiojimo_pabaiga_iki, {
+                label: 'Galiojimo pabaiga iki',
+                start_year: galiojimas_pabaiga_start_year,
+                end_year: galiojimas_pabaiga_end_year,
+                prompt: { month: 'Pasirinkti mėnesį', year: 'Pasirinkti metus', day: 'Pasirinkti dieną' },
+                include_hidden: false,
+                selected: extract_date(@search_params, 'galiojimo_pabaiga_iki')
+              }, class: 'form-control date-select' %>
+
+              <%= form.select :saugoma_teritorija, protected_area_models, { include_blank: 'Nėra', include_hidden: false, selected: @search_params['saugoma_teritorija'] } %>
+              <%= form.check_box :generuoti_naujausius_duomenis, checked: @search_params['generuoti_naujausius_duomenis'] == '1' %>
               <%= form.submit class: 'btn btn-success', value: 'Išsaugoti', id: 'load-data-button' %>
               <%= form.submit class: 'btn btn-success', value: "Įsiminti užklausą", formaction: new_saved_search_path %>
             <% end %>

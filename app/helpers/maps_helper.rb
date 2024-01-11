@@ -61,4 +61,17 @@ module MapsHelper
   def protected_area_models
     GeoJson::Constants::PROTECTED_AREA_NAME_TO_MODEL.keys
   end
+
+  def extract_date(params, field_name)
+    year = params["[#{field_name}(1i)]"]
+    month = params["[#{field_name}(2i)]"]
+    day = params["[#{field_name}(3i)]"]
+
+    date_components = {}
+    date_components[:year] = year.to_i if year.present?
+    date_components[:month] = month.to_i if month.present?
+    date_components[:day] = day.to_i if day.present?
+
+    date_components
+  end
 end
