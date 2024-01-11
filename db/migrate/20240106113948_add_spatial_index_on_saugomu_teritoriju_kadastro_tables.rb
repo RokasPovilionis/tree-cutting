@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Adds indexes for SaugomuTeritorijuKadastro tables
 class AddSpatialIndexOnSaugomuTeritorijuKadastroTables < ActiveRecord::Migration[7.1]
   def change
     add_index :BAST, :geom, using: :gist

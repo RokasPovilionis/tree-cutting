@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_01_06_113948) do
+ActiveRecord::Schema[7.1].define(version: 2024_01_11_010833) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -1283,6 +1283,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_06_113948) do
     t.index ["geom"], name: "index_uredijos_on_geom", using: :gist
     t.index ["mu_kod"], name: "index_uredijos_on_mu_kod", unique: true
     t.index ["pavadinimas"], name: "index_uredijos_on_pavadinimas"
+  end
+
+  create_table "user_saved_searches", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "search_name", null: false
+    t.string "search_params", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_saved_searches_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
