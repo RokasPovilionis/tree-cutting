@@ -3,7 +3,7 @@
 # Controller for maps
 class MapsController < ApplicationController
   def index
-    @search_params = session[:search_params] ? eval(session[:search_params]) : {}
+    @search_params = session_search_params_hash
     @user_saved_searches = UserSavedSearch.where(user_id: current_user.id).limit(5)
     session.delete(:search_params)
   end
@@ -100,5 +100,11 @@ class MapsController < ApplicationController
                   'galiojimo_pradzia_iki(1i)', 'galiojimo_pradzia_iki(2i)', 'galiojimo_pradzia_iki(3i)',
                   'galiojimo_pabaiga_nuo(1i)', 'galiojimo_pabaiga_nuo(2i)', 'galiojimo_pabaiga_nuo(3i)',
                   'galiojimo_pabaiga_iki(1i)', 'galiojimo_pabaiga_iki(2i)', 'galiojimo_pabaiga_iki(3i)')
+  end
+
+  def session_search_params_hash
+    search_params = session[:search_params]&.gsub('=>', ':')&.gsub(/(\w+):/) { "\"#{Regexp.last_match(1)}\":" }
+
+    search_params ? JSON.parse(search_params) : {}
   end
 end
