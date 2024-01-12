@@ -3,8 +3,8 @@
     <div class="col-sm-offset-4 col-sm-8 mb-4">
       <h3>Pranešti apie leidimo nusižengimą</h3>
       <%= bootstrap_form_for(@cutting_violation_report, :url => cutting_violation_reports_path) do |f| %>
-        <%= f.file_field :violation_image, accept: 'image/jpeg,image/gif,image/jpeg', class: 'form-control' %>
-        <%= f.text_field :description, label: 'description', placeholder: 'Apibūdinkite nusižengimą', class: 'form-control' %>
+        <%= f.file_field :violation_image, label: 'Nusižengimo nuotrauka', accept: 'image/jpeg,image/gif,image/jpeg', class: 'form-control' %>
+        <%= f.text_field :description, label: 'Apibūdinimas', placeholder: 'Apibūdinkite nusižengimą', class: 'form-control' %>
         <%= f.hidden_field :leidimas_id, value: params[:leidimas] %>
         <%= f.submit 'Sukurti', class: 'btn btn-success sign-up-button' %>
       <% end %>

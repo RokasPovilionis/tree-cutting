@@ -2,6 +2,32 @@
   <div class="row justify-content-center">
     <div class="col col-sm-10">
 
+      <%= bootstrap_form_with url: leidimai_index_path, method: :get, local: true do |form| %>
+        <div class="row py-3">
+          <div class="col">
+            <%= form.select :regionas, options_for_select(Leidimas.pluck(:regionas).uniq.compact, params[:regionas]), { label: 'Regionas', include_blank: true }, class: 'form-control' %>
+          </div>
+          <div class="col">
+            <%= form.select :rajonas, options_for_select(Leidimas.pluck(:rajonas).uniq.compact, params[:rajonas]), { label: 'Rajonas', include_blank: true }, class: 'form-control' %>
+          </div>
+          <div class="col">
+            <%= form.select :nuosavybes_forma, options_for_select(Leidimas.pluck(:nuosavybes_forma).uniq.compact, params[:nuosavybes_forma]), { label: 'Nuosavybės forma', include_blank: true }, class: 'form-control' %>
+          </div>
+          <div class="col">
+            <%= form.select :uredija, options_for_select(Leidimas.pluck(:uredija).uniq.compact, params[:uredija]), { label: 'Urėdija', include_blank: true }, class: 'form-control' %>
+          </div>
+          <div class="col">
+            <%= form.select :girininkija, options_for_select(Leidimas.pluck(:girininkija).uniq.compact, params[:girininkija]), { label: 'Girininkija', include_blank: true }, class: 'form-control' %>
+          </div>
+          <div class="col">
+            <%= form.select :kvartalas, options_for_select(Leidimas.pluck(:kvartalas).uniq.compact, params[:kvartalas]), { label: 'Kvartalas', include_blank: true }, class: 'form-control' %>
+          </div>
+          <div class="col align-self-center">
+            <%= form.submit "Filtruoti", class: "btn btn-success" %>
+          </div>
+        </div>
+      <% end %>
+
       <%= link_to 'Sukurti naują leidimą', new_leidimai_path, class: "btn btn-success my-3" if current_user&.roles == 'admin'%>
       <%= link_to 'Informuoti apie naujus leidimus', new_permit_location_subscription_path, class: "btn btn-success my-3" if current_user%>
 

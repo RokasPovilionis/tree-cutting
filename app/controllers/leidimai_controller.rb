@@ -5,7 +5,11 @@ class LeidimaiController < ApplicationController
   skip_before_action :authorized, only: %i[index show]
 
   def index
-    @leidimai = Leidimas.order(:created_at).paginate(page: params[:page], per_page: 25)
+    @leidimai = Leidimas.order(:created_at)
+    filter_params.each do |key, value|
+      @leidimai = @leidimai.where(key => value) if value.present?
+    end
+    @leidimai = @leidimai.paginate(page: params[:page], per_page: 25)
   end
 
   def show
@@ -34,5 +38,9 @@ class LeidimaiController < ApplicationController
                                      :girininkija, :kvartalas, :sklypai, :plotas, :kad_vietove,
                                      :kad_blokas, :kad_nr, :kirtimo_rusis, :galiojimo_pradzia,
                                      :galiojimo_pabaiga)
+  end
+
+  def filter_params
+    params.slice(:regionas, :rajonas, :nuosavybes_forma, :uredija, :girininkija, :kvartalas)
   end
 end
