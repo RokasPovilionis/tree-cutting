@@ -9,7 +9,7 @@ class SendNotificationsToSubscribers
   def run
     leidimai.each do |leidimas|
       relevant_subscriptions =
-        subscriptions_by_pair[[leidimas.girininkija, leidimas.kvartalas] || [leidimas.girininkija, nil]]
+        subscriptions_by_pair[[leidimas.girininkija, leidimas.kvartalas]] || subscriptions_by_pair[[leidimas.girininkija, nil]]
 
       if relevant_subscriptions.present?
         relevant_subscriptions.each { |subscription| deliver_email(subscription.user, leidimas.id) }
