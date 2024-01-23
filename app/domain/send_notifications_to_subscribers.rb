@@ -22,7 +22,7 @@ class SendNotificationsToSubscribers
   private
 
   def deliver_email(user, leidimas_id)
-    PermitSubscriptionMailer.permit_subscription_email(user, leidimas_id).deliver_later
+    PermitSubscriptionMailer.permit_subscription_email(user, leidimas_id).deliver_now
   end
 
   def subscriptions_by_pair
