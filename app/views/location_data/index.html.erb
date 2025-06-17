@@ -1,0 +1,26 @@
+<h1>Location Data</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>User</th>
+      <th>Country</th>
+      <th>Address</th>
+      <th>Created At</th>
+      <th>Updated At</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @location_data.each do |data| %>
+      <tr>
+        <td><%= data.id %></td>
+        <td><%= data.user&.email %></td>
+        <td><%= data.country %></td>
+        <td><%= data.address %></td>
+        <td><%= data.created_at %></td>
+        <td><%= data.updated_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
