@@ -1,0 +1,80 @@
+<mxfile host="65bd71144e">
+    <diagram id="T0wwr31Y75erVe-aSwvl" name="Page-1">
+        <mxGraphModel dx="209051" dy="121202" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="10" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" parent="1" edge="1"/>
+                <mxCell id="11" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" parent="1" edge="1"/>
+                <mxCell id="12" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" parent="1" edge="1"/>
+                <mxCell id="13" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" parent="1" edge="1"/>
+                <mxCell id="14" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" parent="1" edge="1"/>
+                <mxCell id="15" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;" parent="1" edge="1"/>
+                <mxCell id="qHuyIlfpLwIiqvQYJfPR-15" value="" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="-200030" y="-109970" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <object label="User" type="Database Table" already_exists="true" id="NIs_-4rebh8_2o8FyyUs-15">
+                    <mxCell style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                        <mxGeometry x="-203380" y="-113240" width="80" height="80" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="NIs_-4rebh8_2o8FyyUs-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="NIs_-4rebh8_2o8FyyUs-16" target="NIs_-4rebh8_2o8FyyUs-31" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <object label="Location Data" type="Model" id="NIs_-4rebh8_2o8FyyUs-16">
+                    <mxCell style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                        <mxGeometry x="-202990" y="-113240" width="80" height="80" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Location Data C&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;ontroller&lt;/span&gt;" type="Controller" id="NIs_-4rebh8_2o8FyyUs-20">
+                    <mxCell style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                        <mxGeometry x="-202990" y="-113080" width="80" height="80" as="geometry"/>
+                    </mxCell>
+                </object>
+                <object label="Location data view" type="View" id="NIs_-4rebh8_2o8FyyUs-21">
+                    <mxCell style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                        <mxGeometry x="-202990" y="-112920" width="80" height="80" as="geometry"/>
+                    </mxCell>
+                </object>
+                <mxCell id="NIs_-4rebh8_2o8FyyUs-24" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="NIs_-4rebh8_2o8FyyUs-31" target="NIs_-4rebh8_2o8FyyUs-15" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-203060" y="-112980" as="sourcePoint"/>
+                        <mxPoint x="-203010" y="-113030" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="NIs_-4rebh8_2o8FyyUs-25" value="Belongs to" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="NIs_-4rebh8_2o8FyyUs-24" vertex="1" connectable="0">
+                    <mxGeometry x="-0.0364" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="NIs_-4rebh8_2o8FyyUs-26" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="NIs_-4rebh8_2o8FyyUs-20" target="NIs_-4rebh8_2o8FyyUs-16" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-203060" y="-112980" as="sourcePoint"/>
+                        <mxPoint x="-203010" y="-113030" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="NIs_-4rebh8_2o8FyyUs-27" value="Fetches data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="NIs_-4rebh8_2o8FyyUs-26" vertex="1" connectable="0">
+                    <mxGeometry x="-0.075" y="-1" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="NIs_-4rebh8_2o8FyyUs-29" value="" style="endArrow=classic;html=1;rounded=0;" parent="1" source="NIs_-4rebh8_2o8FyyUs-21" target="NIs_-4rebh8_2o8FyyUs-20" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="-203060" y="-112980" as="sourcePoint"/>
+                        <mxPoint x="-203010" y="-113030" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="NIs_-4rebh8_2o8FyyUs-30" value="Requests data&lt;div&gt;for a users data vizualization&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="NIs_-4rebh8_2o8FyyUs-29" vertex="1" connectable="0">
+                    <mxGeometry x="0.175" y="2" relative="1" as="geometry">
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <object label="Location Data" type="Database table" columns="{id, user_id country, address, created_at, updated_at}" id="NIs_-4rebh8_2o8FyyUs-31">
+                    <mxCell style="whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                        <mxGeometry x="-203150" y="-113240" width="80" height="80" as="geometry"/>
+                    </mxCell>
+                </object>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

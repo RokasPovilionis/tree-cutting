@@ -1,0 +1,8 @@
+<h1>Location Data</h1>
+<ul>
+  <% @location_data.each do |location| %>
+    <li>
+      <%= location.country %> - <%= location.address %>
+    </li>
+  <% end %>
+</ul>
